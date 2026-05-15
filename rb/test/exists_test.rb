@@ -1,0 +1,11 @@
+# RandomUserGenerator SDK exists test
+
+require "minitest/autorun"
+require_relative "../RandomUserGenerator_sdk"
+
+class ExistsTest < Minitest::Test
+  def test_create_test_sdk
+    testsdk = RandomUserGeneratorSDK.test(nil, nil)
+    assert !testsdk.nil?
+  end
+end

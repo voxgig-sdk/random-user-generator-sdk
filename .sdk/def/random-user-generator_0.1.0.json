@@ -1,0 +1,445 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Random User Generator",
+    "description": "A free, open-source API for generating random user data like names, emails, addresses, and more. Provides JSON, XML, CSV, or YAML objects. Like Lorem Ipsum, but for people.",
+    "version": "1.4",
+    "contact": {
+      "name": "Random User Generator",
+      "url": "https://randomuser.me/"
+    },
+    "license": {
+      "name": "Copyright Notice",
+      "url": "https://randomuser.me/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://randomuser.me/api",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Generate random user data",
+        "description": "Returns randomly generated user data including names, addresses, emails, phone numbers, photos, and more. You can customize the output using query parameters.",
+        "operationId": "getRandomUsers",
+        "parameters": [
+          {
+            "name": "results",
+            "in": "query",
+            "description": "Number of users to generate",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "description": "Format of the response data",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml",
+                "csv",
+                "yaml"
+              ],
+              "default": "json"
+            }
+          },
+          {
+            "name": "gender",
+            "in": "query",
+            "description": "Gender of the generated users",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "male",
+                "female"
+              ]
+            }
+          },
+          {
+            "name": "nat",
+            "in": "query",
+            "description": "Nationality of the generated users (comma-separated list)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "US,GB,FR"
+          },
+          {
+            "name": "seed",
+            "in": "query",
+            "description": "Seed value for generating consistent results",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "minimum": 1
+            }
+          },
+          {
+            "name": "inc",
+            "in": "query",
+            "description": "Fields to include in the results (comma-separated)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "gender,name,email"
+          },
+          {
+            "name": "exc",
+            "in": "query",
+            "description": "Fields to exclude from the results (comma-separated)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "login,registered"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with random user data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RandomUserResponse"
+                },
+                "example": {
+                  "results": [
+                    {
+                      "gender": "female",
+                      "name": {
+                        "title": "Miss",
+                        "first": "Jennie",
+                        "last": "Nichols"
+                      },
+                      "location": {
+                        "street": {
+                          "number": 8929,
+                          "name": "Valwood Pkwy"
+                        },
+                        "city": "Billings",
+                        "state": "Michigan",
+                        "country": "United States",
+                        "postcode": "63104",
+                        "coordinates": {
+                          "latitude": "-69.8246",
+                          "longitude": "134.8719"
+                        },
+                        "timezone": {
+                          "offset": "+9:30",
+                          "description": "Adelaide, Darwin"
+                        }
+                      },
+                      "email": "jennie.nichols@example.com",
+                      "login": {
+                        "uuid": "7a0eed16-9430-4d68-901f-c0d4c1c3bf00",
+                        "username": "yellowpeacock117",
+                        "password": "addison",
+                        "salt": "sld1yGtd",
+                        "md5": "ab54ac4c0be9480ae8fa5e9e2a5196a3",
+                        "sha1": "edcf2ce613cbdea349133c52dc2f3b83168dc51b",
+                        "sha256": "48df5229235ada28389b91e60a935e4f9b73eb4bdb855ef9258a1751f10bdc5d"
+                      },
+                      "dob": {
+                        "date": "1992-03-08T15:13:16.688Z",
+                        "age": 30
+                      },
+                      "registered": {
+                        "date": "2007-07-09T05:51:59.390Z",
+                        "age": 14
+                      },
+                      "phone": "(272) 790-0888",
+                      "cell": "(489) 330-2385",
+                      "id": {
+                        "name": "SSN",
+                        "value": "405-88-3636"
+                      },
+                      "picture": {
+                        "large": "https://randomuser.me/api/portraits/men/75.jpg",
+                        "medium": "https://randomuser.me/api/portraits/med/men/75.jpg",
+                        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/75.jpg"
+                      },
+                      "nat": "US"
+                    }
+                  ],
+                  "info": {
+                    "seed": "56d27f4a53bd5441",
+                    "results": 1,
+                    "page": 1,
+                    "version": "1.4"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/yaml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RandomUserResponse": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          },
+          "info": {
+            "$ref": "#/components/schemas/Info"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "gender": {
+            "type": "string",
+            "enum": [
+              "male",
+              "female"
+            ]
+          },
+          "name": {
+            "$ref": "#/components/schemas/Name"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "login": {
+            "$ref": "#/components/schemas/Login"
+          },
+          "dob": {
+            "$ref": "#/components/schemas/DateInfo"
+          },
+          "registered": {
+            "$ref": "#/components/schemas/DateInfo"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "cell": {
+            "type": "string"
+          },
+          "id": {
+            "$ref": "#/components/schemas/ID"
+          },
+          "picture": {
+            "$ref": "#/components/schemas/Picture"
+          },
+          "nat": {
+            "type": "string"
+          }
+        }
+      },
+      "Name": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "first": {
+            "type": "string"
+          },
+          "last": {
+            "type": "string"
+          }
+        }
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "$ref": "#/components/schemas/Street"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "postcode": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/Coordinates"
+          },
+          "timezone": {
+            "$ref": "#/components/schemas/Timezone"
+          }
+        }
+      },
+      "Street": {
+        "type": "object",
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "Coordinates": {
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "string"
+          },
+          "longitude": {
+            "type": "string"
+          }
+        }
+      },
+      "Timezone": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "Login": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "salt": {
+            "type": "string"
+          },
+          "md5": {
+            "type": "string"
+          },
+          "sha1": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      },
+      "DateInfo": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "age": {
+            "type": "integer"
+          }
+        }
+      },
+      "ID": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Picture": {
+        "type": "object",
+        "properties": {
+          "large": {
+            "type": "string",
+            "format": "uri"
+          },
+          "medium": {
+            "type": "string",
+            "format": "uri"
+          },
+          "thumbnail": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "Info": {
+        "type": "object",
+        "properties": {
+          "seed": {
+            "type": "string"
+          },
+          "results": {
+            "type": "integer"
+          },
+          "page": {
+            "type": "integer"
+          },
+          "version": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

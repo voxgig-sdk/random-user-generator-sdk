@@ -1,0 +1,65 @@
+{
+  "existing": {
+    "get_random_user": {
+      "GET_RANDOM_USER00": {
+        "cell": "s78",
+        "dob": {},
+        "email": "s7a",
+        "gender": "s7b",
+        "id": "GET_RANDOM_USER00",
+        "location": {},
+        "login": {},
+        "name": {},
+        "nat": "s80",
+        "phone": "s81",
+        "picture": {},
+        "registered": {}
+      },
+      "GET_RANDOM_USER01": {
+        "cell": "sf0",
+        "dob": {},
+        "email": "sf2",
+        "gender": "sf3",
+        "id": "GET_RANDOM_USER01",
+        "location": {},
+        "login": {},
+        "name": {},
+        "nat": "sf8",
+        "phone": "sf9",
+        "picture": {},
+        "registered": {}
+      },
+      "GET_RANDOM_USER02": {
+        "cell": "s168",
+        "dob": {},
+        "email": "s16a",
+        "gender": "s16b",
+        "id": "GET_RANDOM_USER02",
+        "location": {},
+        "login": {},
+        "name": {},
+        "nat": "s170",
+        "phone": "s171",
+        "picture": {},
+        "registered": {}
+      }
+    }
+  },
+  "new": {
+    "get_random_user": {
+      "get_random_user_ref01": {
+        "cell": "s1e0",
+        "dob": {},
+        "email": "s1e2",
+        "gender": "s1e3",
+        "location": {},
+        "login": {},
+        "name": {},
+        "nat": "s1e8",
+        "phone": "s1e9",
+        "picture": {},
+        "registered": {}
+      }
+    }
+  }
+}

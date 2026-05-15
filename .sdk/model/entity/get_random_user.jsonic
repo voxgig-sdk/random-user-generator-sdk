@@ -1,0 +1,172 @@
+# Entity: get_random_user
+
+main: kit: entity: get_random_user: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "cell"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "dob"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "email"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "gender"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "location"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "login"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "nat"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "phone"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "picture"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "registered"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "get_random_user"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "login,registered"
+                kind: "query"
+                name: "exc"
+                orig: "exc"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "json"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "gender"
+                orig: "gender"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "gender,name,email"
+                kind: "query"
+                name: "inc"
+                orig: "inc"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "US,GB,FR"
+                kind: "query"
+                name: "nat"
+                orig: "nat"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "result"
+                orig: "result"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "seed"
+                orig: "seed"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/"
+          select: {
+            exist: [
+              "exc"
+              "format"
+              "gender"
+              "inc"
+              "nat"
+              "page"
+              "result"
+              "seed"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

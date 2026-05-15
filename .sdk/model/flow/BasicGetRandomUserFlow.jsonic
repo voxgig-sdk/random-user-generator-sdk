@@ -1,0 +1,22 @@
+# BasicGetRandomUserFlow
+
+main: kit: flow: BasicGetRandomUserFlow:
+{
+  entity: "get_random_user",
+  kind: "basic",
+  name: "BasicGetRandomUserFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "get_random_user_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGetRandomUserFlow"
+}
