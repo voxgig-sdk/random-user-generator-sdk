@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/random-user-generator-sdk"
+	sdk "github.com/voxgig-sdk/random-user-generator-sdk/go"
 )
 
 func TestExists(t *testing.T) {

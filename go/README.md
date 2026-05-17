@@ -5,14 +5,14 @@ The Golang SDK for the RandomUserGenerator API. Provides an entity-oriented inte
 
 ## Install
 ```bash
-go get github.com/voxgig-sdk/random-user-generator-sdk
+go get github.com/voxgig-sdk/random-user-generator-sdk/go
 ```
 
 If the module is not yet published to a registry, use a `replace` directive
 in your `go.mod` to point to a local checkout:
 
 ```bash
-go mod edit -replace github.com/voxgig-sdk/random-user-generator-sdk=../path/to/github.com/voxgig-sdk/random-user-generator-sdk
+go mod edit -replace github.com/voxgig-sdk/random-user-generator-sdk/go=../path/to/github.com/voxgig-sdk/random-user-generator-sdk/go
 ```
 
 
@@ -30,8 +30,8 @@ import (
     "fmt"
     "os"
 
-    sdk "github.com/voxgig-sdk/random-user-generator-sdk"
-    "github.com/voxgig-sdk/random-user-generator-sdk/core"
+    sdk "github.com/voxgig-sdk/random-user-generator-sdk/go"
+    "github.com/voxgig-sdk/random-user-generator-sdk/go/core"
 )
 
 func main() {
@@ -330,7 +330,7 @@ Use `core.ToMapAny()` to safely cast results and nested data.
 ### Package structure
 
 ```
-github.com/voxgig-sdk/random-user-generator-sdk/
+github.com/voxgig-sdk/random-user-generator-sdk/go/
 ├── random-user-generator.go        # Root package — type aliases and constructors
 ├── core/               # SDK core — client, types, pipeline
 ├── entity/             # Entity implementations
@@ -339,7 +339,7 @@ github.com/voxgig-sdk/random-user-generator-sdk/
 └── test/               # Test suites
 ```
 
-The root package (`github.com/voxgig-sdk/random-user-generator-sdk`) re-exports everything needed
+The root package (`github.com/voxgig-sdk/random-user-generator-sdk/go`) re-exports everything needed
 for normal use. Import sub-packages only when you need specific types
 like `core.ToMapAny`.
 

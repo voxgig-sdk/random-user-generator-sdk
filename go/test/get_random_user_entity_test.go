@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/random-user-generator-sdk"
-	"github.com/voxgig-sdk/random-user-generator-sdk/core"
+	sdk "github.com/voxgig-sdk/random-user-generator-sdk/go"
+	"github.com/voxgig-sdk/random-user-generator-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/random-user-generator-sdk/go/utility/struct"
 )
 
 func TestGetRandomUserEntity(t *testing.T) {

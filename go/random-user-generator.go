@@ -1,10 +1,10 @@
 package voxgigrandomusergeneratorsdk
 
 import (
-	"github.com/voxgig-sdk/random-user-generator-sdk/core"
-	"github.com/voxgig-sdk/random-user-generator-sdk/entity"
-	"github.com/voxgig-sdk/random-user-generator-sdk/feature"
-	_ "github.com/voxgig-sdk/random-user-generator-sdk/utility"
+	"github.com/voxgig-sdk/random-user-generator-sdk/go/core"
+	"github.com/voxgig-sdk/random-user-generator-sdk/go/entity"
+	"github.com/voxgig-sdk/random-user-generator-sdk/go/feature"
+	_ "github.com/voxgig-sdk/random-user-generator-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
