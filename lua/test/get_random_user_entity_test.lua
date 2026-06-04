@@ -92,7 +92,6 @@ function get_random_user_basic_setup(extra)
     ["RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID"] = idmap,
     ["RANDOMUSERGENERATOR_TEST_LIVE"] = "FALSE",
     ["RANDOMUSERGENERATOR_TEST_EXPLAIN"] = "FALSE",
-    ["RANDOMUSERGENERATOR_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function get_random_user_basic_setup(extra)
   if env["RANDOMUSERGENERATOR_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["RANDOMUSERGENERATOR_APIKEY"],
       },
       extra or {},
     })

@@ -93,14 +93,12 @@ func get_random_userDirectSetup(mockres any) *get_random_userDirectSetupResult {
 	env := envOverride(map[string]any{
 		"RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID": map[string]any{},
 		"RANDOMUSERGENERATOR_TEST_LIVE":    "FALSE",
-		"RANDOMUSERGENERATOR_APIKEY":       "NONE",
 	})
 
 	live := env["RANDOMUSERGENERATOR_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["RANDOMUSERGENERATOR_APIKEY"],
 		}
 		client := sdk.NewRandomUserGeneratorSDK(mergedOpts)
 

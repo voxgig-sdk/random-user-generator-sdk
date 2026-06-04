@@ -63,14 +63,12 @@ function get_random_user_direct_setup(mockres)
   local env = runner.env_override({
     ["RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID"] = {},
     ["RANDOMUSERGENERATOR_TEST_LIVE"] = "FALSE",
-    ["RANDOMUSERGENERATOR_APIKEY"] = "NONE",
   })
 
   local live = env["RANDOMUSERGENERATOR_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["RANDOMUSERGENERATOR_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {
