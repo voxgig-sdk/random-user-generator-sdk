@@ -10,13 +10,13 @@ The Ruby SDK for the RandomUserGenerator API — an entity-oriented client using
 
 ## Install
 ```bash
-gem install random-user-generator-sdk
+gem install voxgig-sdk-random-user-generator
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "random-user-generator-sdk"
+gem "voxgig-sdk-random-user-generator"
 ```
 
 Then run:

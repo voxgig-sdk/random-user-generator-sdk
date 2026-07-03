@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/random-user-generator",
-  "description": "RandomUserGenerator SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the Random User Generator public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "random-user-generator"],
+  "homepage": "https://github.com/voxgig-sdk/random-user-generator-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/random-user-generator-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/random-user-generator-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

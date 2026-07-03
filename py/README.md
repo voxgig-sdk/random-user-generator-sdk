@@ -10,7 +10,7 @@ The Python SDK for the RandomUserGenerator API — an entity-oriented client fol
 
 ## Install
 ```bash
-pip install random-user-generator-sdk
+pip install voxgig-sdk-random-user-generator
 ```
 
 Or install from source:

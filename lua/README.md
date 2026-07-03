@@ -10,7 +10,7 @@ The Lua SDK for the RandomUserGenerator API — an entity-oriented client using 
 
 ## Install
 ```bash
-luarocks install random-user-generator-sdk
+luarocks install voxgig-sdk-random-user-generator
 ```
 
 If the module is not yet published, add the source directory to

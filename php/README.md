@@ -10,7 +10,7 @@ The PHP SDK for the RandomUserGenerator API — an entity-oriented client using 
 
 ## Install
 ```bash
-composer require voxgig/random-user-generator-sdk
+composer require voxgig-sdk/random-user-generator
 ```
 
 

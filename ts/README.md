@@ -10,7 +10,7 @@ The TypeScript SDK for the RandomUserGenerator API — a type-safe, entity-orien
 
 ## Install
 ```bash
-npm install random-user-generator
+npm install @voxgig-sdk/random-user-generator
 ```
 ## Tutorial: your first API call
 
