@@ -1,22 +1,8 @@
 # RandomUserGenerator SDK
 
-Generate randomized fake user profiles for testing, prototyping, and demos
+Random User Generator client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Random User Generator
-
-[Random User Generator](https://randomuser.me/) is a free service that returns realistic-looking but entirely fake user profiles. It is designed by Arron Hunt and developed by Keith Armstrong, with contributions from the open-source community.
-
-What you get from the API:
-- Personal info: name, gender, date of birth, age
-- Contact: email, phone, cell
-- Location: street, city, state, country, postcode, coordinates, timezone
-- Login credentials: username, password (plus salt, MD5/SHA1/SHA256 hashes), UUID
-- ID number, nationality, registration date
-- Profile pictures in thumbnail, medium, and large sizes
-
-Requests can be tuned via query parameters such as `results` (up to 5,000 per call), `gender`, `nat` (nationality filter, e.g. `us,dk,fr,gb`), `seed` (reproducible output), `inc`/`exc` (field selection), `page`, and `format` (JSON, XML, CSV, YAML, PrettyJSON). No authentication is required and CORS is enabled, so the API can be called directly from the browser. The base endpoint is `https://randomuser.me/api/`, with a pinned version available at `https://randomuser.me/api/1.4/`.
 
 ## Try it
 
@@ -50,29 +36,31 @@ gem install random-user-generator-sdk
 luarocks install random-user-generator-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { RandomUserGeneratorSDK } from 'random-user-generator'
 
-const client = new RandomUserGeneratorSDK({})
+const client = new RandomUserGeneratorSDK({
+  apikey: process.env.RANDOM-USER-GENERATOR_APIKEY,
+})
 
 // List all getrandomusers
 const getrandomusers = await client.GetRandomUser().list()
+console.log(getrandomusers.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -102,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **GetRandomUser** | Fetches one or more randomly generated user profiles from `https://randomuser.me/api/`, with optional `results`, `gender`, `nat`, `seed`, `inc`, `exc`, `page`, and `format` query parameters. | `/` |
+| **GetRandomUser** |  | `/` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -112,12 +100,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from randomusergenerator_sdk import RandomUserGeneratorSDK
 
-client = RandomUserGeneratorSDK({})
+client = RandomUserGeneratorSDK({
+    "apikey": os.environ.get("RANDOM-USER-GENERATOR_APIKEY"),
+})
 
 # List all getrandomusers
-getrandomusers, err = client.GetRandomUser(None).list(None, None)
+getrandomusers, err = client.GetRandomUser().list()
+print(getrandomusers)
 ```
 
 ### PHP
@@ -126,10 +118,13 @@ getrandomusers, err = client.GetRandomUser(None).list(None, None)
 <?php
 require_once 'randomusergenerator_sdk.php';
 
-$client = new RandomUserGeneratorSDK([]);
+$client = new RandomUserGeneratorSDK([
+    "apikey" => getenv("RANDOM-USER-GENERATOR_APIKEY"),
+]);
 
 // List all getrandomusers
-[$getrandomusers, $err] = $client->GetRandomUser(null)->list(null, null);
+[$getrandomusers, $err] = $client->GetRandomUser()->list();
+print_r($getrandomusers);
 ```
 
 ### Golang
@@ -137,10 +132,13 @@ $client = new RandomUserGeneratorSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/random-user-generator-sdk/go"
 
-client := sdk.NewRandomUserGeneratorSDK(map[string]any{})
+client := sdk.NewRandomUserGeneratorSDK(map[string]any{
+    "apikey": os.Getenv("RANDOM-USER-GENERATOR_APIKEY"),
+})
 
 // List all getrandomusers
 getrandomusers, err := client.GetRandomUser(nil).List(nil, nil)
+fmt.Println(getrandomusers)
 ```
 
 ### Ruby
@@ -148,10 +146,13 @@ getrandomusers, err := client.GetRandomUser(nil).List(nil, nil)
 ```ruby
 require_relative "RandomUserGenerator_sdk"
 
-client = RandomUserGeneratorSDK.new({})
+client = RandomUserGeneratorSDK.new({
+  "apikey" => ENV["RANDOM-USER-GENERATOR_APIKEY"],
+})
 
 # List all getrandomusers
-getrandomusers, err = client.GetRandomUser(nil).list(nil, nil)
+getrandomusers, err = client.GetRandomUser().list
+puts getrandomusers
 ```
 
 ### Lua
@@ -159,10 +160,13 @@ getrandomusers, err = client.GetRandomUser(nil).list(nil, nil)
 ```lua
 local sdk = require("random-user-generator_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("RANDOM-USER-GENERATOR_APIKEY"),
+})
 
 -- List all getrandomusers
-local getrandomusers, err = client:GetRandomUser(nil):list(nil, nil)
+local getrandomusers, err = client:GetRandomUser():list()
+print(getrandomusers)
 ```
 
 ## Unit testing in offline mode
@@ -181,25 +185,21 @@ const result = await client.GetRandomUser().load({ id: 'test01' })
 ### Python
 
 ```python
-client = RandomUserGeneratorSDK.test(None, None)
-result, err = client.GetRandomUser(None).load(
-    {"id": "test01"}, None
-)
+client = RandomUserGeneratorSDK.test()
+result, err = client.GetRandomUser().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = RandomUserGeneratorSDK::test(null, null);
-[$result, $err] = $client->GetRandomUser(null)->load(
-    ["id" => "test01"], null
-);
+$client = RandomUserGeneratorSDK::test();
+[$result, $err] = $client->GetRandomUser()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.GetRandomUser(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -208,19 +208,15 @@ result, err := client.GetRandomUser(nil).Load(
 ### Ruby
 
 ```ruby
-client = RandomUserGeneratorSDK.test(nil, nil)
-result, err = client.GetRandomUser(nil).load(
-  { "id" => "test01" }, nil
-)
+client = RandomUserGeneratorSDK.test
+result, err = client.GetRandomUser().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:GetRandomUser(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:GetRandomUser():load({ id = "test01" })
 ```
 
 ## How it works
@@ -324,16 +320,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Random User Generator
-
-- Upstream: [https://randomuser.me/](https://randomuser.me/)
-- API docs: [https://randomuser.me/documentation](https://randomuser.me/documentation)
-
-- Free to use for testing, prototyping, and development.
-- Profile photos are hand-picked from the authorized section of [UI Faces](https://uifaces.co/) — review their FAQ for photo usage terms.
-- No API key or authentication is required.
-- The service is community-maintained; check the project repository for the latest licence notes.
 
 ---
 

@@ -86,6 +86,7 @@ function get_random_user_basic_setup($extra)
         "RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID" => $idmap,
         "RANDOMUSERGENERATOR_TEST_LIVE" => "FALSE",
         "RANDOMUSERGENERATOR_TEST_EXPLAIN" => "FALSE",
+        "RANDOMUSERGENERATOR_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,6 +98,7 @@ function get_random_user_basic_setup($extra)
     if ($env["RANDOMUSERGENERATOR_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["RANDOMUSERGENERATOR_APIKEY"],
             ],
             $extra ?? [],
         ]);

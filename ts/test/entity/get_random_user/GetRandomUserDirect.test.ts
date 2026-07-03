@@ -79,12 +79,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID': {},
     'RANDOMUSERGENERATOR_TEST_LIVE': 'FALSE',
+    'RANDOMUSERGENERATOR_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.RANDOMUSERGENERATOR_TEST_LIVE
 
   if (live) {
     const client = new RandomUserGeneratorSDK({
+      apikey: env.RANDOMUSERGENERATOR_APIKEY,
     })
 
     let idmap: any = env['RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID']

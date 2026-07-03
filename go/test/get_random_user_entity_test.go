@@ -119,6 +119,7 @@ func get_random_userBasicSetup(extra map[string]any) *entityTestSetup {
 		"RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID": idmap,
 		"RANDOMUSERGENERATOR_TEST_LIVE":      "FALSE",
 		"RANDOMUSERGENERATOR_TEST_EXPLAIN":   "FALSE",
+		"RANDOMUSERGENERATOR_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID"])
@@ -129,6 +130,7 @@ func get_random_userBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["RANDOMUSERGENERATOR_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["RANDOMUSERGENERATOR_APIKEY"],
 			},
 			extra,
 		})

@@ -62,12 +62,14 @@ def get_random_user_direct_setup(mockres)
   env = Runner.env_override({
     "RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID" => {},
     "RANDOMUSERGENERATOR_TEST_LIVE" => "FALSE",
+    "RANDOMUSERGENERATOR_APIKEY" => "NONE",
   })
 
   live = env["RANDOMUSERGENERATOR_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["RANDOMUSERGENERATOR_APIKEY"],
     }
     client = RandomUserGeneratorSDK.new(merged_opts)
     return {

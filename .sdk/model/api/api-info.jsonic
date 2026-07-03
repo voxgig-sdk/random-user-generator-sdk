@@ -21,29 +21,7 @@ main: {
       ]
       title: "Random User Generator"
       version: "1.4"
-      tagline: "Generate randomized fake user profiles for testing, prototyping, and demos"
-      homepage: "https://randomuser.me/"
-      docs_url: "https://randomuser.me/documentation"
-      license_short: "Free to use; profile photos sourced from UI Faces' authorized section (see UI Faces terms)."
-      license_md: `- Free to use for testing, prototyping, and development.
-- Profile photos are hand-picked from the authorized section of [UI Faces](https://uifaces.co/) — review their FAQ for photo usage terms.
-- No API key or authentication is required.
-- The service is community-maintained; check the project repository for the latest licence notes.`
-      about_md: `[Random User Generator](https://randomuser.me/) is a free service that returns realistic-looking but entirely fake user profiles. It is designed by Arron Hunt and developed by Keith Armstrong, with contributions from the open-source community.
-
-What you get from the API:
-- Personal info: name, gender, date of birth, age
-- Contact: email, phone, cell
-- Location: street, city, state, country, postcode, coordinates, timezone
-- Login credentials: username, password (plus salt, MD5/SHA1/SHA256 hashes), UUID
-- ID number, nationality, registration date
-- Profile pictures in thumbnail, medium, and large sizes
-
-Requests can be tuned via query parameters such as \`results\` (up to 5,000 per call), \`gender\`, \`nat\` (nationality filter, e.g. \`us,dk,fr,gb\`), \`seed\` (reproducible output), \`inc\`/\`exc\` (field selection), \`page\`, and \`format\` (JSON, XML, CSV, YAML, PrettyJSON). No authentication is required and CORS is enabled, so the API can be called directly from the browser. The base endpoint is \`https://randomuser.me/api/\`, with a pinned version available at \`https://randomuser.me/api/1.4/\`.`
-      entity_desc: {
-        get_random_user: "Fetches one or more randomly generated user profiles from `https://randomuser.me/api/`, with optional `results`, `gender`, `nat`, `seed`, `inc`, `exc`, `page`, and `format` query parameters."
-      }
-      auth: false
     }
   }
 }
+
