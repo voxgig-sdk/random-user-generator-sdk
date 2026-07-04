@@ -109,7 +109,7 @@ Alias for `RandomUserGeneratorSDK.test()`.
 ## GetRandomUserEntity
 
 ```ts
-const get_random_user = client.get_random_user
+const get_random_user = client.GetRandomUser()
 ```
 
 ### Fields
@@ -136,7 +136,7 @@ const get_random_user = client.get_random_user
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.get_random_user.list()
+const results = await client.GetRandomUser().list()
 ```
 
 ### Common Methods

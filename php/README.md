@@ -29,18 +29,16 @@ require_once 'randomusergenerator_sdk.php';
 $client = new RandomUserGeneratorSDK();
 ```
 
-### 2. List getrandomusers
+### 2. List getrandomuser records
 
 ```php
 try {
-    $result = $client->getrandomuser()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of GetRandomUser records — iterate directly.
+    $getrandomusers = $client->GetRandomUser()->list();
+    foreach ($getrandomusers as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = RandomUserGeneratorSDK::test();
+$client = RandomUserGeneratorSDK::test([
+    "entity" => ["getrandomuser" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->getrandomuser()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$getrandomuser = $client->GetRandomUser()->load(["id" => "test01"]);
+print_r($getrandomuser);
 ```
 
 ### Use a custom fetch function
@@ -239,7 +241,7 @@ API path: `/`
 
 ### GetRandomUser
 
-Create an instance: `const get_random_user = client.get_random_user`
+Create an instance: `$get_random_user = $client->GetRandomUser();`
 
 #### Operations
 
@@ -266,8 +268,9 @@ Create an instance: `const get_random_user = client.get_random_user`
 
 #### Example: List
 
-```ts
-const get_random_users = await client.get_random_user.list()
+```php
+// list() returns an array of GetRandomUser records (throws on error).
+$get_random_users = $client->GetRandomUser()->list();
 ```
 
 
@@ -342,7 +345,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$getrandomuser = $client->getrandomuser();
+$getrandomuser = $client->GetRandomUser();
 $getrandomuser->load(["id" => "example_id"]);
 
 // $getrandomuser->dataGet() now returns the loaded getrandomuser data

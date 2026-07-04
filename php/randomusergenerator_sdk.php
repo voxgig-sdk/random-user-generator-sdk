@@ -233,10 +233,10 @@ class RandomUserGeneratorSDK
 
     private $_get_random_user = null;
 
-    // Idiomatic facade: $client->get_random_user()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetRandomUser() (PHP method
-    // names are case-insensitive).
-    public function get_random_user($data = null)
+    // Canonical facade: $client->GetRandomUser()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_random_user()
+    // resolves here too.
+    public function GetRandomUser($data = null)
     {
         require_once __DIR__ . '/entity/get_random_user_entity.php';
         if ($data === null) {

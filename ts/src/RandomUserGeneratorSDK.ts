@@ -204,14 +204,7 @@ class RandomUserGeneratorSDK {
 
 
 
-  _get_random_user?: GetRandomUserEntity
-
-  // Idiomatic facade: `client.get_random_user.list()` / `client.get_random_user.load({ id })`.
-  get get_random_user(): GetRandomUserEntity {
-    return (this._get_random_user ??= new GetRandomUserEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.get_random_user` instead. */
+  // Entity access: `client.GetRandomUser().list()` / `client.GetRandomUser().load({ id })`.
   GetRandomUser(data?: any) {
     const self = this
     return new GetRandomUserEntity(self,data)

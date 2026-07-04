@@ -220,25 +220,15 @@ class RandomUserGeneratorSDK:
         }
 
 
-    @property
-    def get_random_user(self):
-        """Idiomatic facade: client.get_random_user.list() / client.get_random_user.load({"id": ...})."""
-        from entity.get_random_user_entity import GetRandomUserEntity
-        cached = getattr(self, "_get_random_user", None)
-        if cached is None:
-            cached = GetRandomUserEntity(self, None)
-            self._get_random_user = cached
-        return cached
-
-    def GetRandomUser(self, data=None):
-        # Deprecated: use client.get_random_user instead.
+    def GetRandomUser(self, data=None) -> "GetRandomUserEntity":
+        """Entity factory: client.GetRandomUser().list({}) / client.GetRandomUser().load({"id": ...})."""
         from entity.get_random_user_entity import GetRandomUserEntity
         return GetRandomUserEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "RandomUserGeneratorSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class RandomUserGeneratorSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.get_random_user_entity import GetRandomUserEntity

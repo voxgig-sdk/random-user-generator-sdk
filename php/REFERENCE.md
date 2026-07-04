@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## GetRandomUserEntity
 
 ```php
-$get_random_user = $client->get_random_user();
+$get_random_user = $client->GetRandomUser();
 ```
 
 ### Fields
@@ -112,7 +112,7 @@ $get_random_user = $client->get_random_user();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->get_random_user()->list([]);
+$results = $client->GetRandomUser()->list([]);
 ```
 
 ### Common Methods

@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## GetRandomUserEntity
 
 ```ruby
-get_random_user = client.get_random_user
+get_random_user = client.GetRandomUser
 ```
 
 ### Fields
@@ -113,7 +113,7 @@ get_random_user = client.get_random_user
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.get_random_user.list(nil)
+results = client.GetRandomUser.list(nil)
 ```
 
 ### Common Methods

@@ -80,7 +80,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## GetRandomUserEntity
 
 ```python
-get_random_user = client.get_random_user
+get_random_user = client.GetRandomUser()
 ```
 
 ### Fields
@@ -107,7 +107,9 @@ get_random_user = client.get_random_user
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.get_random_user.list({})
+results = client.GetRandomUser().list({})
+for get_random_user in results:
+    print(get_random_user)
 ```
 
 ### Common Methods

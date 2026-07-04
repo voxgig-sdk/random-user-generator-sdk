@@ -208,13 +208,7 @@ class RandomUserGeneratorSDK
   end
 
 
-  # Idiomatic facade: client.get_random_user.list / client.get_random_user.load({ "id" => ... })
-  def get_random_user
-    require_relative 'entity/get_random_user_entity'
-    @get_random_user ||= GetRandomUserEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_random_user instead.
+  # Canonical facade: client.GetRandomUser.list / client.GetRandomUser.load({ "id" => ... })
   def GetRandomUser(data = nil)
     require_relative 'entity/get_random_user_entity'
     GetRandomUserEntity.new(self, data)

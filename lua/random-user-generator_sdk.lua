@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:get_random_user():list() / client:get_random_user():load({ id = ... })
-function RandomUserGeneratorSDK:get_random_user(data)
+-- Idiomatic facade: client:GetRandomUser():list() / client:GetRandomUser():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function RandomUserGeneratorSDK:GetRandomUser(data)
   local EntityMod = require("entity.get_random_user_entity")
   if data == nil then
     if self._get_random_user == nil then
@@ -253,12 +254,6 @@ function RandomUserGeneratorSDK:get_random_user(data)
     end
     return self._get_random_user
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:get_random_user() instead.
-function RandomUserGeneratorSDK:GetRandomUser(data)
-  local EntityMod = require("entity.get_random_user_entity")
   return EntityMod.new(self, data)
 end
 

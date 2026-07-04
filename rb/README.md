@@ -28,16 +28,14 @@ require_relative "RandomUserGenerator_sdk"
 client = RandomUserGeneratorSDK.new
 ```
 
-### 2. List getrandomusers
+### 2. List getrandomuser records
 
 ```ruby
 begin
-  result = client.getrandomuser.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of GetRandomUser records — iterate directly.
+  getrandomusers = client.GetRandomUser.list
+  getrandomusers.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = RandomUserGeneratorSDK.test
+client = RandomUserGeneratorSDK.test({
+  "entity" => { "getrandomuser" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.getrandomuser.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+getrandomuser = client.GetRandomUser.load({ "id" => "test01" })
+puts getrandomuser
 ```
 
 ### Use a custom fetch function
@@ -234,7 +236,7 @@ API path: `/`
 
 ### GetRandomUser
 
-Create an instance: `const get_random_user = client.get_random_user`
+Create an instance: `get_random_user = client.GetRandomUser`
 
 #### Operations
 
@@ -261,8 +263,9 @@ Create an instance: `const get_random_user = client.get_random_user`
 
 #### Example: List
 
-```ts
-const get_random_users = await client.get_random_user.list()
+```ruby
+# list returns an Array of GetRandomUser records (raises on error).
+get_random_users = client.GetRandomUser.list
 ```
 
 
@@ -337,7 +340,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-getrandomuser = client.getrandomuser
+getrandomuser = client.GetRandomUser
 getrandomuser.load({ "id" => "example_id" })
 
 # getrandomuser.data_get now returns the loaded getrandomuser data

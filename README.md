@@ -26,9 +26,11 @@ import { RandomUserGeneratorSDK } from '@voxgig-sdk/random-user-generator'
 
 const client = new RandomUserGeneratorSDK()
 
-// List all getrandomusers
-const getrandomusers = await client.getrandomuser.list()
-console.log(getrandomusers.data)
+// List all getrandomusers (returns GetRandomUser[])
+const getrandomusers = await client.GetRandomUser().list()
+for (const getrandomuser of getrandomusers) {
+  console.log(getrandomuser)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,9 +85,10 @@ from randomusergenerator_sdk import RandomUserGeneratorSDK
 
 client = RandomUserGeneratorSDK()
 
-# List all getrandomusers
-getrandomusers = client.getrandomuser.list()
-print(getrandomusers)
+# List all getrandomusers (returns a list, raises on error)
+getrandomusers = client.GetRandomUser().list({})
+for getrandomuser in getrandomusers:
+    print(getrandomuser)
 ```
 
 ### PHP
@@ -96,8 +99,8 @@ require_once 'randomusergenerator_sdk.php';
 
 $client = new RandomUserGeneratorSDK();
 
-// List all getrandomusers (throws on error)
-$getrandomusers = $client->getrandomuser()->list();
+// List all getrandomusers (returns an array; throws on error)
+$getrandomusers = $client->GetRandomUser()->list();
 print_r($getrandomusers);
 ```
 
@@ -120,8 +123,8 @@ require_relative "RandomUserGenerator_sdk"
 
 client = RandomUserGeneratorSDK.new
 
-# List all getrandomusers
-getrandomusers = client.getrandomuser.list
+# List all getrandomusers (returns an Array; raises on error)
+getrandomusers = client.GetRandomUser.list
 puts getrandomusers
 ```
 
@@ -133,7 +136,7 @@ local sdk = require("random-user-generator_sdk")
 local client = sdk.new()
 
 -- List all getrandomusers
-local getrandomusers, err = client:getrandomuser():list()
+local getrandomusers, err = client:GetRandomUser():list()
 print(getrandomusers)
 ```
 
@@ -146,22 +149,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = RandomUserGeneratorSDK.test()
-const result = await client.getrandomuser.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const getrandomuser = await client.GetRandomUser().load({ id: 'test01' })
+// getrandomuser is a bare GetRandomUser populated with mock data
+console.log(getrandomuser)
 ```
 
 ### Python
 
 ```python
 client = RandomUserGeneratorSDK.test()
-result = client.getrandomuser.load({"id": "test01"})
+getrandomuser = client.GetRandomUser().load({"id": "test01"})
+print(getrandomuser)
 ```
 
 ### PHP
 
 ```php
-$client = RandomUserGeneratorSDK::test();
-$result = $client->getrandomuser()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = RandomUserGeneratorSDK::test([
+    "entity" => ["getrandomuser" => ["test01" => ["id" => "test01"]]],
+]);
+$getrandomuser = $client->GetRandomUser()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -176,15 +184,18 @@ result, err := client.GetRandomUser(nil).Load(
 ### Ruby
 
 ```ruby
-client = RandomUserGeneratorSDK.test
-result = client.getrandomuser.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = RandomUserGeneratorSDK.test({
+  "entity" => { "getrandomuser" => { "test01" => { "id" => "test01" } } },
+})
+getrandomuser = client.GetRandomUser.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:getrandomuser():load({ id = "test01" })
+local result, err = client:GetRandomUser():load({ id = "test01" })
 ```
 
 ## How it works
@@ -232,6 +243,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

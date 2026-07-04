@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## GetRandomUserEntity
 
 ```lua
-local get_random_user = client:get_random_user(nil)
+local get_random_user = client:GetRandomUser(nil)
 ```
 
 ### Fields
@@ -110,7 +110,7 @@ local get_random_user = client:get_random_user(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:get_random_user():list()
+local results, err = client:GetRandomUser():list()
 ```
 
 ### Common Methods

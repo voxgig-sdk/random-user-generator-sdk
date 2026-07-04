@@ -31,14 +31,16 @@ from randomusergenerator_sdk import RandomUserGeneratorSDK
 client = RandomUserGeneratorSDK()
 ```
 
-### 2. List getrandomusers
+### 2. List getrandomuser records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.getrandomuser.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    getrandomusers = client.GetRandomUser().list({})
+    for getrandomuser in getrandomusers:
+        print(getrandomuser)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = RandomUserGeneratorSDK.test()
 
-result = client.getrandomuser.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+getrandomuser = client.GetRandomUser().load({"id": "test01"})
+# getrandomuser contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -231,7 +234,7 @@ API path: `/`
 
 ### GetRandomUser
 
-Create an instance: `const get_random_user = client.get_random_user`
+Create an instance: `get_random_user = client.GetRandomUser()`
 
 #### Operations
 
@@ -258,8 +261,8 @@ Create an instance: `const get_random_user = client.get_random_user`
 
 #### Example: List
 
-```ts
-const get_random_users = await client.get_random_user.list()
+```python
+get_random_users = client.GetRandomUser().list({})
 ```
 
 
@@ -333,7 +336,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-getrandomuser = client.getrandomuser
+getrandomuser = client.GetRandomUser()
 getrandomuser.load({"id": "example_id"})
 
 # getrandomuser.data_get() now returns the loaded getrandomuser data

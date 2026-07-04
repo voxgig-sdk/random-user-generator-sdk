@@ -4,41 +4,43 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class GetRandomUser:
-    cell: Optional[str] = None
-    dob: Optional[dict] = None
-    email: Optional[str] = None
-    gender: Optional[str] = None
-    id: Optional[dict] = None
-    location: Optional[dict] = None
-    login: Optional[dict] = None
-    name: Optional[dict] = None
-    nat: Optional[str] = None
-    phone: Optional[str] = None
-    picture: Optional[dict] = None
-    registered: Optional[dict] = None
+class GetRandomUser(TypedDict, total=False):
+    cell: str
+    dob: dict
+    email: str
+    gender: str
+    id: dict
+    location: dict
+    login: dict
+    name: dict
+    nat: str
+    phone: str
+    picture: dict
+    registered: dict
 
 
-@dataclass
-class GetRandomUserListMatch:
-    cell: Optional[str] = None
-    dob: Optional[dict] = None
-    email: Optional[str] = None
-    gender: Optional[str] = None
-    id: Optional[dict] = None
-    location: Optional[dict] = None
-    login: Optional[dict] = None
-    name: Optional[dict] = None
-    nat: Optional[str] = None
-    phone: Optional[str] = None
-    picture: Optional[dict] = None
-    registered: Optional[dict] = None
-
+class GetRandomUserListMatch(TypedDict, total=False):
+    cell: str
+    dob: dict
+    email: str
+    gender: str
+    id: dict
+    location: dict
+    login: dict
+    name: dict
+    nat: str
+    phone: str
+    picture: dict
+    registered: dict
