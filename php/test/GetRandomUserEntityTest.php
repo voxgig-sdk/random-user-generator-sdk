@@ -50,8 +50,7 @@ class GetRandomUserEntityTest extends TestCase
         $get_random_user_ref01_ent = $client->GetRandomUser(null);
         $get_random_user_ref01_match = [];
 
-        [$get_random_user_ref01_list_result, $err] = $get_random_user_ref01_ent->list($get_random_user_ref01_match, null);
-        $this->assertNull($err);
+        $get_random_user_ref01_list_result = $get_random_user_ref01_ent->list($get_random_user_ref01_match, null);
         $this->assertIsArray($get_random_user_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function get_random_user_basic_setup($extra)
         "RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID" => $idmap,
         "RANDOMUSERGENERATOR_TEST_LIVE" => "FALSE",
         "RANDOMUSERGENERATOR_TEST_EXPLAIN" => "FALSE",
-        "RANDOMUSERGENERATOR_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function get_random_user_basic_setup($extra)
     if ($env["RANDOMUSERGENERATOR_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["RANDOMUSERGENERATOR_APIKEY"],
             ],
             $extra ?? [],
         ]);

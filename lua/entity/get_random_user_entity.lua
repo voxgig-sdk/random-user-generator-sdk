@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch GetRandomUserListMatch
+---@param ctrl? table
+---@return GetRandomUser[]
+---@return string? err
 function GetRandomUserEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

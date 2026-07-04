@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         name: "Random User Generator"
         url: "https://randomuser.me/"

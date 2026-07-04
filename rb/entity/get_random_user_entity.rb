@@ -45,6 +45,7 @@ class GetRandomUserEntity
     end
   end
 
+  # @return [GetRandomUser, Hash] the current GetRandomUser data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class GetRandomUserEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of GetRandomUser fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class GetRandomUserEntity
   
 
   
+  # List GetRandomUser items matching the given filter.
+  #
+  # @param reqmatch [GetRandomUserListMatch, Hash, nil] match filter (any subset of GetRandomUser fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<GetRandomUser>, Array] the matching GetRandomUser items; raises RandomUserGeneratorError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

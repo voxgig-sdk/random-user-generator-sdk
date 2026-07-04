@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -110,7 +109,7 @@ Alias for `RandomUserGeneratorSDK.test()`.
 ## GetRandomUserEntity
 
 ```ts
-const get_random_user = client.GetRandomUser()
+const get_random_user = client.get_random_user
 ```
 
 ### Fields
@@ -137,7 +136,7 @@ const get_random_user = client.GetRandomUser()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.GetRandomUser().list()
+const results = await client.get_random_user.list()
 ```
 
 ### Common Methods

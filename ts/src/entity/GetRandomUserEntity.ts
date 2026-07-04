@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  GetRandomUser,
+  GetRandomUserListMatch,
+} from '../RandomUserGeneratorTypes'
 
 // TODO: needs Entity superclass
-class GetRandomUserEntity extends RandomUserGeneratorEntityBase {
+class GetRandomUserEntity extends RandomUserGeneratorEntityBase<GetRandomUser> {
 
   constructor(client: RandomUserGeneratorSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class GetRandomUserEntity extends RandomUserGeneratorEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: GetRandomUserListMatch, ctrl?: Control): Promise<GetRandomUser[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class GetRandomUserEntity extends RandomUserGeneratorEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<GetRandomUser[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

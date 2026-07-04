@@ -20,9 +20,6 @@ class RandomUserGeneratorConfig
             ],
             "options" => [
                 "base" => "https://randomuser.me/api",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

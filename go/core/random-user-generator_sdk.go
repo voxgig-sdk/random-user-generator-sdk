@@ -245,6 +245,9 @@ func (sdk *RandomUserGeneratorSDK) Direct(fetchargs map[string]any) (map[string]
 }
 
 
+// GetRandomUser returns a GetRandomUser entity bound to this client.
+// Idiomatic usage: client.GetRandomUser(nil).List(nil, nil) or
+// client.GetRandomUser(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *RandomUserGeneratorSDK) GetRandomUser(data map[string]any) RandomUserGeneratorEntity {
 	return NewGetRandomUserEntityFunc(sdk, data)
 }

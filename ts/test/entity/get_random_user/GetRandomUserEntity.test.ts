@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'RANDOM_USER_GENERATOR_TEST_GET_RANDOM_USER_ENTID': idmap,
     'RANDOM_USER_GENERATOR_TEST_LIVE': 'FALSE',
     'RANDOM_USER_GENERATOR_TEST_EXPLAIN': 'FALSE',
-    'RANDOM_USER_GENERATOR_APIKEY': 'NONE',
   })
 
   idmap = env['RANDOM_USER_GENERATOR_TEST_GET_RANDOM_USER_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new RandomUserGeneratorSDK(merge([
       {
-        apikey: env.RANDOM_USER_GENERATOR_APIKEY,
       },
       extra
     ]))
