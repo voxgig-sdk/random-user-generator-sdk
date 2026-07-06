@@ -8,7 +8,7 @@ Complete API reference for the RandomUserGenerator Python SDK.
 ### Constructor
 
 ```python
-from random-user-generator_sdk import RandomUserGeneratorSDK
+from randomusergenerator_sdk import RandomUserGeneratorSDK
 
 client = RandomUserGeneratorSDK(options)
 ```
@@ -87,27 +87,27 @@ get_random_user = client.GetRandomUser()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cell` | ``$STRING`` | No |  |
-| `dob` | ``$OBJECT`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$OBJECT`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `login` | ``$OBJECT`` | No |  |
-| `name` | ``$OBJECT`` | No |  |
-| `nat` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `picture` | ``$OBJECT`` | No |  |
-| `registered` | ``$OBJECT`` | No |  |
+| `cell` | `str` | No |  |
+| `dob` | `dict` | No |  |
+| `email` | `str` | No |  |
+| `gender` | `str` | No |  |
+| `id` | `dict` | No |  |
+| `location` | `dict` | No |  |
+| `login` | `dict` | No |  |
+| `name` | `dict` | No |  |
+| `nat` | `str` | No |  |
+| `phone` | `str` | No |  |
+| `picture` | `dict` | No |  |
+| `registered` | `dict` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.GetRandomUser().list({})
+results = client.GetRandomUser().list()
 for get_random_user in results:
     print(get_random_user)
 ```

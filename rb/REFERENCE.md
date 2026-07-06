@@ -8,7 +8,7 @@ Complete API reference for the RandomUserGenerator Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'random-user-generator_sdk'
+require_relative 'RandomUserGenerator_sdk'
 
 client = RandomUserGeneratorSDK.new(options)
 ```
@@ -93,27 +93,27 @@ get_random_user = client.GetRandomUser
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cell` | ``$STRING`` | No |  |
-| `dob` | ``$OBJECT`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$OBJECT`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `login` | ``$OBJECT`` | No |  |
-| `name` | ``$OBJECT`` | No |  |
-| `nat` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `picture` | ``$OBJECT`` | No |  |
-| `registered` | ``$OBJECT`` | No |  |
+| `cell` | `String` | No |  |
+| `dob` | `Hash` | No |  |
+| `email` | `String` | No |  |
+| `gender` | `String` | No |  |
+| `id` | `Hash` | No |  |
+| `location` | `Hash` | No |  |
+| `login` | `Hash` | No |  |
+| `name` | `Hash` | No |  |
+| `nat` | `String` | No |  |
+| `phone` | `String` | No |  |
+| `picture` | `Hash` | No |  |
+| `registered` | `Hash` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.GetRandomUser.list(nil)
+results = client.GetRandomUser.list
 ```
 
 ### Common Methods

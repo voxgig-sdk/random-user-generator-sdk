@@ -21,6 +21,18 @@
 ---@field registered? table
 
 ---@class GetRandomUserListMatch
+---@field cell? string
+---@field dob? table
+---@field email? string
+---@field gender? string
+---@field id? table
+---@field location? table
+---@field login? table
+---@field name? table
+---@field nat? string
+---@field phone? string
+---@field picture? table
+---@field registered? table
 
 local M = {}
 

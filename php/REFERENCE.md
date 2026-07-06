@@ -8,7 +8,7 @@ Complete API reference for the RandomUserGenerator PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/random-user-generator_sdk.php';
+require_once __DIR__ . '/randomusergenerator_sdk.php';
 
 $client = new RandomUserGeneratorSDK($options);
 ```
@@ -45,11 +45,11 @@ $client = RandomUserGeneratorSDK::test();
 
 Create a new `GetRandomUserEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): RandomUserGeneratorUtility`
 
 Return a copy of the SDK utility object.
 
@@ -92,44 +92,44 @@ $get_random_user = $client->GetRandomUser();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cell` | ``$STRING`` | No |  |
-| `dob` | ``$OBJECT`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$OBJECT`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `login` | ``$OBJECT`` | No |  |
-| `name` | ``$OBJECT`` | No |  |
-| `nat` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `picture` | ``$OBJECT`` | No |  |
-| `registered` | ``$OBJECT`` | No |  |
+| `cell` | `string` | No |  |
+| `dob` | `array` | No |  |
+| `email` | `string` | No |  |
+| `gender` | `string` | No |  |
+| `id` | `array` | No |  |
+| `location` | `array` | No |  |
+| `login` | `array` | No |  |
+| `name` | `array` | No |  |
+| `nat` | `string` | No |  |
+| `phone` | `string` | No |  |
+| `picture` | `array` | No |  |
+| `registered` | `array` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->GetRandomUser()->list([]);
+$results = $client->GetRandomUser()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -138,7 +138,7 @@ Set the entity match criteria.
 Create a new `GetRandomUserEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

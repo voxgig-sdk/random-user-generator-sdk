@@ -24,8 +24,7 @@ type GetRandomUser struct {
 	Registered *map[string]any `json:"registered,omitempty"`
 }
 
-// GetRandomUserListMatch mirrors the get_random_user fields as an all-optional match
-// filter (Go analog of Partial<GetRandomUser>).
+// GetRandomUserListMatch is the typed request payload for GetRandomUser.ListTyped.
 type GetRandomUserListMatch struct {
 	Cell *string `json:"cell,omitempty"`
 	Dob *map[string]any `json:"dob,omitempty"`

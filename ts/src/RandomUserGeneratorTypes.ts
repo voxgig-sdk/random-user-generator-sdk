@@ -20,5 +20,18 @@ export interface GetRandomUser {
   registered?: Record<string, any>
 }
 
-export type GetRandomUserListMatch = Partial<GetRandomUser>
+export interface GetRandomUserListMatch {
+  cell?: string
+  dob?: Record<string, any>
+  email?: string
+  gender?: string
+  id?: Record<string, any>
+  location?: Record<string, any>
+  login?: Record<string, any>
+  name?: Record<string, any>
+  nat?: string
+  phone?: string
+  picture?: Record<string, any>
+  registered?: Record<string, any>
+}
 

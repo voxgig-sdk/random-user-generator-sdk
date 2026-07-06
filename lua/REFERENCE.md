@@ -90,18 +90,18 @@ local get_random_user = client:GetRandomUser(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cell` | ``$STRING`` | No |  |
-| `dob` | ``$OBJECT`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$OBJECT`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `login` | ``$OBJECT`` | No |  |
-| `name` | ``$OBJECT`` | No |  |
-| `nat` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `picture` | ``$OBJECT`` | No |  |
-| `registered` | ``$OBJECT`` | No |  |
+| `cell` | `string` | No |  |
+| `dob` | `table` | No |  |
+| `email` | `string` | No |  |
+| `gender` | `string` | No |  |
+| `id` | `table` | No |  |
+| `location` | `table` | No |  |
+| `login` | `table` | No |  |
+| `name` | `table` | No |  |
+| `nat` | `string` | No |  |
+| `phone` | `string` | No |  |
+| `picture` | `table` | No |  |
+| `registered` | `table` | No |  |
 
 ### Operations
 

@@ -116,18 +116,18 @@ const get_random_user = client.GetRandomUser()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cell` | ``$STRING`` | No |  |
-| `dob` | ``$OBJECT`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$OBJECT`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `login` | ``$OBJECT`` | No |  |
-| `name` | ``$OBJECT`` | No |  |
-| `nat` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `picture` | ``$OBJECT`` | No |  |
-| `registered` | ``$OBJECT`` | No |  |
+| `cell` | `string` | No |  |
+| `dob` | `Record<string, any>` | No |  |
+| `email` | `string` | No |  |
+| `gender` | `string` | No |  |
+| `id` | `Record<string, any>` | No |  |
+| `location` | `Record<string, any>` | No |  |
+| `login` | `Record<string, any>` | No |  |
+| `name` | `Record<string, any>` | No |  |
+| `nat` | `string` | No |  |
+| `phone` | `string` | No |  |
+| `picture` | `Record<string, any>` | No |  |
+| `registered` | `Record<string, any>` | No |  |
 
 ### Operations
 

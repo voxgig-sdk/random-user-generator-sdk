@@ -97,18 +97,18 @@ get_random_user := client.GetRandomUser(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cell` | ``$STRING`` | No |  |
-| `dob` | ``$OBJECT`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `gender` | ``$STRING`` | No |  |
-| `id` | ``$OBJECT`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
-| `login` | ``$OBJECT`` | No |  |
-| `name` | ``$OBJECT`` | No |  |
-| `nat` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `picture` | ``$OBJECT`` | No |  |
-| `registered` | ``$OBJECT`` | No |  |
+| `cell` | `string` | No |  |
+| `dob` | `map[string]any` | No |  |
+| `email` | `string` | No |  |
+| `gender` | `string` | No |  |
+| `id` | `map[string]any` | No |  |
+| `location` | `map[string]any` | No |  |
+| `login` | `map[string]any` | No |  |
+| `name` | `map[string]any` | No |  |
+| `nat` | `string` | No |  |
+| `phone` | `string` | No |  |
+| `picture` | `map[string]any` | No |  |
+| `registered` | `map[string]any` | No |  |
 
 ### Operations
 

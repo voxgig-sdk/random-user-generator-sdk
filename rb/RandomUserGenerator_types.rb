@@ -61,7 +61,7 @@ GetRandomUser = Struct.new(
   keyword_init: true
 )
 
-# Match filter for GetRandomUser#list (any subset of GetRandomUser fields).
+# Request payload for GetRandomUser#list.
 #
 # @!attribute [rw] cell
 #   @return [String, nil]

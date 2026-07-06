@@ -29,7 +29,7 @@ class GetRandomUser
     public ?array $registered = null;
 }
 
-/** Match filter for GetRandomUser#list (any subset of GetRandomUser fields). */
+/** Request payload for GetRandomUser#list. */
 class GetRandomUserListMatch
 {
     public ?string $cell = null;

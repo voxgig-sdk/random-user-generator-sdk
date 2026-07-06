@@ -221,7 +221,7 @@ class RandomUserGeneratorSDK:
 
 
     def GetRandomUser(self, data=None) -> "GetRandomUserEntity":
-        """Entity factory: client.GetRandomUser().list({}) / client.GetRandomUser().load({"id": ...})."""
+        """Entity factory: client.GetRandomUser().list() / client.GetRandomUser().load({"id": ...})."""
         from entity.get_random_user_entity import GetRandomUserEntity
         return GetRandomUserEntity(self, data)
 
