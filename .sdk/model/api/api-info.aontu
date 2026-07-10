@@ -20,9 +20,9 @@ main: {
           url: "https://randomuser.me/api"
         }
       ]
+      summary: "A free, open-source API for generating random user data like names, emails, addresses, and more."
       title: "Random User Generator"
       version: "1.4"
+      website: "https://randomuser.me"
     }
   }
-}
-

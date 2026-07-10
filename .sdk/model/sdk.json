@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -347,14 +344,17 @@
           "name": "Copyright Notice",
           "url": "https://randomuser.me/"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://randomuser.me/api"
           }
         ],
+        "summary": "A free, open-source API for generating random user data like names, emails, addresses, and more.",
         "title": "Random User Generator",
-        "version": "1.4"
+        "version": "1.4",
+        "website": "https://randomuser.me"
       },
       "option": {},
       "target": {
@@ -407,6 +407,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -457,6 +460,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

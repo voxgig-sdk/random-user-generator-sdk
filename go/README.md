@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // List getrandomuser records — the value is the array of records itself.
-    getrandomusers, err := client.GetRandomUser(nil).List(nil, nil)
+    // List getRandomUser records — the value is the array of records itself.
+    getRandomUsers, err := client.GetRandomUser(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-    for _, item := range getrandomusers.([]any) {
+    for _, item := range getRandomUsers.([]any) {
         fmt.Println(item)
     }
 }
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-getrandomuser, err := client.GetRandomUser(nil).List(
+getRandomUser, err := client.GetRandomUser(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(getrandomuser) // the returned mock data
+fmt.Println(getRandomUser) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -247,9 +247,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    getrandomuser, err := client.GetRandomUser(nil).List(map[string]any{/* fields */}, nil)
+    getRandomUser, err := client.GetRandomUser(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // getrandomuser is the returned record
+    // getRandomUser is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -284,7 +284,7 @@ API path: `/`
 
 ### GetRandomUser
 
-Create an instance: `get_random_user := client.GetRandomUser(nil)`
+Create an instance: `getRandomUser := client.GetRandomUser(nil)`
 
 #### Operations
 
@@ -312,11 +312,11 @@ Create an instance: `get_random_user := client.GetRandomUser(nil)`
 #### Example: List
 
 ```go
-get_random_users, err := client.GetRandomUser(nil).List(nil, nil)
+getRandomUsers, err := client.GetRandomUser(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_random_users) // the array of records
+fmt.Println(getRandomUsers) // the array of records
 ```
 
 

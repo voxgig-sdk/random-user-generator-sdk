@@ -90,7 +90,8 @@ same parameters as `Direct()`.
 ## GetRandomUserEntity
 
 ```go
-get_random_user := client.GetRandomUser(nil)
+getRandomUser := client.GetRandomUser(nil)
+fmt.Println(getRandomUser.GetName()) // "get_random_user"
 ```
 
 ### Fields
@@ -118,6 +119,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.GetRandomUser(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
