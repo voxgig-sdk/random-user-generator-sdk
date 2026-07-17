@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- RandomUserGenerator SDK exists test
 
 local sdk = require("random-user-generator_sdk")
 
