@@ -23,8 +23,8 @@ module RandomUserGeneratorTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("RANDOMUSERGENERATOR_TEST_LIVE")
-    override = getenv("RANDOMUSERGENERATOR_TEST_OVERRIDE")
+    live = getenv("RANDOM_USER_GENERATOR_TEST_LIVE")
+    override = getenv("RANDOM_USER_GENERATOR_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module RandomUserGeneratorTestRunner
       end
     end
 
-    explain = getenv("RANDOMUSERGENERATOR_TEST_EXPLAIN")
-    m["RANDOMUSERGENERATOR_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("RANDOM_USER_GENERATOR_TEST_EXPLAIN")
+    m["RANDOM_USER_GENERATOR_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

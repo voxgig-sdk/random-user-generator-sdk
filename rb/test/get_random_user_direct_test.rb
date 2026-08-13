@@ -60,11 +60,11 @@ def get_random_user_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID" => {},
-    "RANDOMUSERGENERATOR_TEST_LIVE" => "FALSE",
+    "RANDOM_USER_GENERATOR_TEST_GET_RANDOM_USER_ENTID" => {},
+    "RANDOM_USER_GENERATOR_TEST_LIVE" => "FALSE",
   })
 
-  live = env["RANDOMUSERGENERATOR_TEST_LIVE"] == "TRUE"
+  live = env["RANDOM_USER_GENERATOR_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

@@ -26,8 +26,8 @@ import {
 describe('GetRandomUserEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when RANDOMUSERGENERATOR_TEST_LIVE=TRUE.
-  afterEach(liveDelay('RANDOMUSERGENERATOR_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when RANDOM_USER_GENERATOR_TEST_LIVE=TRUE.
+  afterEach(liveDelay('RANDOM_USER_GENERATOR_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = RandomUserGeneratorSDK.test()
@@ -63,7 +63,7 @@ describe('GetRandomUserEntity', async () => {
     const get_random_user_ref01_ent = client.GetRandomUser()
     const get_random_user_ref01_match: any = {}
 
-    const get_random_user_ref01_list = await get_random_user_ref01_ent.list(get_random_user_ref01_match)
+    const get_random_user_ref01_list = (await get_random_user_ref01_ent.list(get_random_user_ref01_match)).map((e: any) => e.data())
 
 
   })

@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import RandomUserGeneratorControl
-from core.error import RandomUserGeneratorError
-from core.result import RandomUserGeneratorResult
-from core.spec import RandomUserGeneratorSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import RandomUserGeneratorControl
+from projectname_sdk.core.error import RandomUserGeneratorError
+from projectname_sdk.core.result import RandomUserGeneratorResult
+from projectname_sdk.core.spec import RandomUserGeneratorSpec
 
 
 # True when this SDK was generated with the named feature.

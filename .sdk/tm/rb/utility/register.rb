@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ RandomUserGeneratorUtility.registrar = ->(u) {
   u.prepare_params = RandomUserGeneratorUtilities::PrepareParams
   u.prepare_path = RandomUserGeneratorUtilities::PreparePath
   u.prepare_query = RandomUserGeneratorUtilities::PrepareQuery
+  u.graphql_body = RandomUserGeneratorUtilities::GraphqlBody
+  u.graphql_errors = RandomUserGeneratorUtilities::GraphqlErrors
   u.result_basic = RandomUserGeneratorUtilities::ResultBasic
   u.result_body = RandomUserGeneratorUtilities::ResultBody
   u.result_headers = RandomUserGeneratorUtilities::ResultHeaders

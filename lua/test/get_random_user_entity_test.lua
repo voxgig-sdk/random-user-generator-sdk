@@ -70,7 +70,7 @@ describe("GetRandomUserEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set RANDOM_USER_GENERATOR_TEST_GET_RANDOM_USER_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -126,22 +126,22 @@ function get_random_user_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID")
+  local entid_env_raw = os.getenv("RANDOM_USER_GENERATOR_TEST_GET_RANDOM_USER_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID"] = idmap,
-    ["RANDOMUSERGENERATOR_TEST_LIVE"] = "FALSE",
-    ["RANDOMUSERGENERATOR_TEST_EXPLAIN"] = "FALSE",
+    ["RANDOM_USER_GENERATOR_TEST_GET_RANDOM_USER_ENTID"] = idmap,
+    ["RANDOM_USER_GENERATOR_TEST_LIVE"] = "FALSE",
+    ["RANDOM_USER_GENERATOR_TEST_EXPLAIN"] = "FALSE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID"])
+    env["RANDOM_USER_GENERATOR_TEST_GET_RANDOM_USER_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["RANDOMUSERGENERATOR_TEST_LIVE"] == "TRUE" then
+  if env["RANDOM_USER_GENERATOR_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
       },
@@ -150,13 +150,13 @@ function get_random_user_basic_setup(extra)
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["RANDOMUSERGENERATOR_TEST_LIVE"] == "TRUE"
+  local live = env["RANDOM_USER_GENERATOR_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["RANDOMUSERGENERATOR_TEST_EXPLAIN"] == "TRUE",
+    explain = env["RANDOM_USER_GENERATOR_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

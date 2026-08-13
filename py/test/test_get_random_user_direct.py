@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from randomusergenerator_sdk.utility.voxgig_struct import voxgig_struct as vs
 from randomusergenerator_sdk import RandomUserGeneratorSDK
-from core import helpers
+from randomusergenerator_sdk.core import helpers
 from test import runner
 
 
@@ -58,11 +58,11 @@ def _get_random_user_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "RANDOMUSERGENERATOR_TEST_GET_RANDOM_USER_ENTID": {},
-        "RANDOMUSERGENERATOR_TEST_LIVE": "FALSE",
+        "RANDOM_USER_GENERATOR_TEST_GET_RANDOM_USER_ENTID": {},
+        "RANDOM_USER_GENERATOR_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("RANDOMUSERGENERATOR_TEST_LIVE") == "TRUE"
+    live = env.get("RANDOM_USER_GENERATOR_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

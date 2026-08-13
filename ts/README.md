@@ -35,7 +35,9 @@ const client = new RandomUserGeneratorSDK()
 
 ### 2. List getrandomuser records
 
-`list()` resolves to an array of GetRandomUser objects — iterate it directly:
+`list()` resolves to an array of GetRandomUser ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const getrandomusers = await client.GetRandomUser().list()
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = RandomUserGeneratorSDK.test()
 
 const getrandomuser = await client.GetRandomUser().list()
-// getrandomuser is a bare entity populated with mock response data
+// getrandomuser is the entity, populated with mock response data
+// — call getrandomuser.data() for the record itself
 console.log(getrandomuser)
 ```
 

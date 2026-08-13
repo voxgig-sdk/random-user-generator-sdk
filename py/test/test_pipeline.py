@@ -16,11 +16,11 @@
 import pytest
 
 from randomusergenerator_sdk import RandomUserGeneratorSDK
-from core.error import RandomUserGeneratorError
-from core.result import RandomUserGeneratorResult
-from core.response import RandomUserGeneratorResponse
-from core.spec import RandomUserGeneratorSpec
-from feature.base_feature import RandomUserGeneratorBaseFeature
+from randomusergenerator_sdk.core.error import RandomUserGeneratorError
+from randomusergenerator_sdk.core.result import RandomUserGeneratorResult
+from randomusergenerator_sdk.core.response import RandomUserGeneratorResponse
+from randomusergenerator_sdk.core.spec import RandomUserGeneratorSpec
+from randomusergenerator_sdk.feature.base_feature import RandomUserGeneratorBaseFeature
 
 
 def _client():

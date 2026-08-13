@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ RandomUserGeneratorUtility::setRegistrar(function (RandomUserGeneratorUtility $u
     $u->prepare_params = [RandomUserGeneratorPrepareParams::class, 'call'];
     $u->prepare_path = [RandomUserGeneratorPreparePath::class, 'call'];
     $u->prepare_query = [RandomUserGeneratorPrepareQuery::class, 'call'];
+    $u->graphql_body = [RandomUserGeneratorGraphql::class, 'body'];
+    $u->graphql_errors = [RandomUserGeneratorGraphql::class, 'errors'];
     $u->result_basic = [RandomUserGeneratorResultBasic::class, 'call'];
     $u->result_body = [RandomUserGeneratorResultBody::class, 'call'];
     $u->result_headers = [RandomUserGeneratorResultHeaders::class, 'call'];

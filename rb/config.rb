@@ -192,6 +192,7 @@ module RandomUserGeneratorConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/",
                   "parts" => [],

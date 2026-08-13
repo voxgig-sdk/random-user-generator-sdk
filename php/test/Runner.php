@@ -43,8 +43,8 @@ class RandomUserGeneratorTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('RANDOMUSERGENERATOR_TEST_LIVE');
-        $override = self::getenv('RANDOMUSERGENERATOR_TEST_OVERRIDE');
+        $live = self::getenv('RANDOM_USER_GENERATOR_TEST_LIVE');
+        $override = self::getenv('RANDOM_USER_GENERATOR_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class RandomUserGeneratorTestRunner
             }
         }
 
-        $explain = self::getenv('RANDOMUSERGENERATOR_TEST_EXPLAIN');
+        $explain = self::getenv('RANDOM_USER_GENERATOR_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['RANDOMUSERGENERATOR_TEST_EXPLAIN'] = $explain;
+            $m['RANDOM_USER_GENERATOR_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

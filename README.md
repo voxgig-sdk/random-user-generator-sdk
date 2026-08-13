@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = RandomUserGeneratorSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = RandomUserGeneratorSDK.test({
+  entity: {
+    get_random_user: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const getrandomusers = await client.GetRandomUser().list()
-// getrandomusers is an array of bare GetRandomUser records populated with mock data
+// getrandomusers is an array of GetRandomUser entities, populated with mock data
+// — call getrandomusers[0].data() for the record itself
 console.log(getrandomusers)
 ```
 
@@ -110,7 +119,7 @@ import { RandomUserGeneratorSDK } from '@voxgig-sdk/random-user-generator'
 
 const client = new RandomUserGeneratorSDK()
 
-// List all getrandomusers (returns GetRandomUser[])
+// List all getrandomusers (returns GetRandomUserEntity[] — .data() for the record)
 const getrandomusers = await client.GetRandomUser().list()
 for (const getrandomuser of getrandomusers) {
   console.log(getrandomuser)
@@ -343,6 +352,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://randomuser.me/](https://randomuser.me/)
 

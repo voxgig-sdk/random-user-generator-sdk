@@ -37,7 +37,7 @@ class GetRandomUserEntity extends RandomUserGeneratorEntityBase<GetRandomUser> {
 
 
 
-  async list(this: any, reqmatch?: GetRandomUserListMatch, ctrl?: Control): Promise<GetRandomUser[]> {
+  async list(this: any, reqmatch?: GetRandomUserListMatch, ctrl?: Control): Promise<GetRandomUserEntity[]> {
 
     const utility = this._utility
 

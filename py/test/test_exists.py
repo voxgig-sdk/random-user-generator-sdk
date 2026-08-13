@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# RandomUserGenerator SDK exists test
 
 import pytest
 from randomusergenerator_sdk import RandomUserGeneratorSDK

@@ -35,8 +35,8 @@ end
 
 
 function runner.env_override(m)
-  local live = runner.getenv("RANDOMUSERGENERATOR_TEST_LIVE")
-  local override = runner.getenv("RANDOMUSERGENERATOR_TEST_OVERRIDE")
+  local live = runner.getenv("RANDOM_USER_GENERATOR_TEST_LIVE")
+  local override = runner.getenv("RANDOM_USER_GENERATOR_TEST_OVERRIDE")
 
   if live == "TRUE" or override == "TRUE" then
     for key, _ in pairs(m) do
@@ -56,9 +56,9 @@ function runner.env_override(m)
     end
   end
 
-  local explain = runner.getenv("RANDOMUSERGENERATOR_TEST_EXPLAIN")
+  local explain = runner.getenv("RANDOM_USER_GENERATOR_TEST_EXPLAIN")
   if explain ~= nil and explain ~= "" then
-    m["RANDOMUSERGENERATOR_TEST_EXPLAIN"] = explain
+    m["RANDOM_USER_GENERATOR_TEST_EXPLAIN"] = explain
   end
 
   return m
