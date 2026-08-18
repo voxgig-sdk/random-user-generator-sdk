@@ -40,7 +40,7 @@ class GetRandomUserEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = RandomUserGeneratorConfig::make_config();
+        $cfg = RandomUserGeneratorConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = RandomUserGeneratorSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];

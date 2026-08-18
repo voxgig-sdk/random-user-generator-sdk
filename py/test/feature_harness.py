@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from randomusergenerator_sdk.config import make_config
+from randomusergenerator_sdk.config import shared_config
 from randomusergenerator_sdk.features import _make_feature
 from randomusergenerator_sdk.core.control import RandomUserGeneratorControl
 from randomusergenerator_sdk.core.error import RandomUserGeneratorError
@@ -24,7 +24,7 @@ from randomusergenerator_sdk.core.spec import RandomUserGeneratorSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

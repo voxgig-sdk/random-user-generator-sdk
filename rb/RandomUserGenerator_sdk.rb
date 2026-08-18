@@ -28,7 +28,7 @@ class RandomUserGeneratorSDK
     utility = RandomUserGeneratorUtility.new
     @_utility = utility
 
-    config = RandomUserGeneratorConfig.make_config
+    config = RandomUserGeneratorConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

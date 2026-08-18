@@ -34,6 +34,11 @@ main: kit: entity: get_random_user: {
       name: "location"
       req: false
       type: "`$OBJECT`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 2
+      }
     }
     {
       name: "login"

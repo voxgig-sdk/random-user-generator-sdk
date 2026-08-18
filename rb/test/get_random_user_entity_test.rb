@@ -33,7 +33,7 @@ class GetRandomUserEntityTest < Minitest::Test
     assert_equal 3, seen.length
 
     # Inbound: streaming active -> yields each item from the feature.
-    cfg = RandomUserGeneratorConfig.make_config
+    cfg = RandomUserGeneratorConfig.shared_config
     if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("streaming")
       sdk = RandomUserGeneratorSDK.test(seed, { "feature" => { "streaming" => { "active" => true } } })
       got = []

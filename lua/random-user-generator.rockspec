@@ -23,6 +23,7 @@ build = {
   modules = {
     ["random-user-generator_sdk"] = "random-user-generator_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }

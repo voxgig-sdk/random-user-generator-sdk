@@ -40,7 +40,7 @@ class RandomUserGeneratorSDK
         $utility = new RandomUserGeneratorUtility();
         $this->_utility = $utility;
 
-        $config = RandomUserGeneratorConfig::make_config();
+        $config = RandomUserGeneratorConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

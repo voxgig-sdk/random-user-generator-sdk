@@ -1,6 +1,20 @@
 # RandomUserGenerator SDK configuration
 
 module RandomUserGeneratorConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -26,88 +40,57 @@ module RandomUserGeneratorConfig
         "get_random_user" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "cell",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "dob",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "email",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "gender",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "id",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "location",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 5,
+              "union" => {
+                "branches" => 2,
+                "count" => 1,
+                "depth" => 2,
+              },
             },
             {
-              "active" => true,
               "name" => "login",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "name",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 7,
             },
             {
-              "active" => true,
               "name" => "nat",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 8,
             },
             {
-              "active" => true,
               "name" => "phone",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 9,
             },
             {
-              "active" => true,
               "name" => "picture",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 10,
             },
             {
-              "active" => true,
               "name" => "registered",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 11,
             },
           ],
           "name" => "get_random_user",
@@ -117,77 +100,60 @@ module RandomUserGeneratorConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "example" => "login,registered",
                         "kind" => "query",
                         "name" => "exc",
                         "orig" => "exc",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "example" => "json",
                         "kind" => "query",
                         "name" => "format",
                         "orig" => "format",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "gender",
                         "orig" => "gender",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "example" => "gender,name,email",
                         "kind" => "query",
                         "name" => "inc",
                         "orig" => "inc",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "example" => "US,GB,FR",
                         "kind" => "query",
                         "name" => "nat",
                         "orig" => "nat",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "example" => 1,
                         "kind" => "query",
                         "name" => "page",
                         "orig" => "page",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "example" => 1,
                         "kind" => "query",
                         "name" => "result",
                         "orig" => "result",
-                        "reqd" => false,
                         "type" => "`$INTEGER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "seed",
                         "orig" => "seed",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -212,10 +178,8 @@ module RandomUserGeneratorConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
