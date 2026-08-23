@@ -33,6 +33,9 @@ class RandomUserGeneratorConfig
         return [
             "main" => [
                 "name" => "RandomUserGenerator",
+                "slug" => "random-user-generator",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [

@@ -6,7 +6,7 @@ The Golang SDK for the RandomUserGenerator API — an entity-oriented client usi
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.GetRandomUser(nil)` — each with the same small set of operations (`List`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
