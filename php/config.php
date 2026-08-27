@@ -42,6 +42,7 @@ class RandomUserGeneratorConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [

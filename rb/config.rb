@@ -28,6 +28,7 @@ module RandomUserGeneratorConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
