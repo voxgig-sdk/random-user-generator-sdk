@@ -30,18 +30,14 @@ type GetRandomUser struct {
 
 // GetRandomUserListMatch is the typed request payload for GetRandomUser.ListTyped.
 type GetRandomUserListMatch struct {
-	Cell *string `json:"cell,omitempty"`
-	Dob *map[string]any `json:"dob,omitempty"`
-	Email *string `json:"email,omitempty"`
+	Exc *string `json:"exc,omitempty"`
+	Format *string `json:"format,omitempty"`
 	Gender *string `json:"gender,omitempty"`
-	Id *map[string]any `json:"id,omitempty"`
-	Location *map[string]any `json:"location,omitempty"`
-	Login *map[string]any `json:"login,omitempty"`
-	Name *map[string]any `json:"name,omitempty"`
+	Inc *string `json:"inc,omitempty"`
 	Nat *string `json:"nat,omitempty"`
-	Phone *string `json:"phone,omitempty"`
-	Picture *map[string]any `json:"picture,omitempty"`
-	Registered *map[string]any `json:"registered,omitempty"`
+	Page *int `json:"page,omitempty"`
+	Result *int `json:"result,omitempty"`
+	Seed *string `json:"seed,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

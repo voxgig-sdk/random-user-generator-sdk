@@ -63,54 +63,38 @@ GetRandomUser = Struct.new(
 
 # Request payload for GetRandomUser#list.
 #
-# @!attribute [rw] cell
+# @!attribute [rw] exc
 #   @return [String, nil]
 #
-# @!attribute [rw] dob
-#   @return [Hash, nil]
-#
-# @!attribute [rw] email
+# @!attribute [rw] format
 #   @return [String, nil]
 #
 # @!attribute [rw] gender
 #   @return [String, nil]
 #
-# @!attribute [rw] id
-#   @return [Hash, nil]
-#
-# @!attribute [rw] location
-#   @return [Hash, nil]
-#
-# @!attribute [rw] login
-#   @return [Hash, nil]
-#
-# @!attribute [rw] name
-#   @return [Hash, nil]
+# @!attribute [rw] inc
+#   @return [String, nil]
 #
 # @!attribute [rw] nat
 #   @return [String, nil]
 #
-# @!attribute [rw] phone
+# @!attribute [rw] page
+#   @return [Integer, nil]
+#
+# @!attribute [rw] result
+#   @return [Integer, nil]
+#
+# @!attribute [rw] seed
 #   @return [String, nil]
-#
-# @!attribute [rw] picture
-#   @return [Hash, nil]
-#
-# @!attribute [rw] registered
-#   @return [Hash, nil]
 GetRandomUserListMatch = Struct.new(
-  :cell,
-  :dob,
-  :email,
+  :exc,
+  :format,
   :gender,
-  :id,
-  :location,
-  :login,
-  :name,
+  :inc,
   :nat,
-  :phone,
-  :picture,
-  :registered,
+  :page,
+  :result,
+  :seed,
   keyword_init: true
 )
 

@@ -32,17 +32,13 @@ class GetRandomUser
 /** Request payload for GetRandomUser#list. */
 class GetRandomUserListMatch
 {
-    public ?string $cell = null;
-    public ?array $dob = null;
-    public ?string $email = null;
+    public ?string $exc = null;
+    public ?string $format = null;
     public ?string $gender = null;
-    public ?array $id = null;
-    public ?array $location = null;
-    public ?array $login = null;
-    public ?array $name = null;
+    public ?string $inc = null;
     public ?string $nat = null;
-    public ?string $phone = null;
-    public ?array $picture = null;
-    public ?array $registered = null;
+    public ?int $page = null;
+    public ?int $result = null;
+    public ?string $seed = null;
 }
 

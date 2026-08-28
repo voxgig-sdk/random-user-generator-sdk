@@ -32,15 +32,11 @@ class GetRandomUser(TypedDict, total=False):
 
 
 class GetRandomUserListMatch(TypedDict, total=False):
-    cell: str
-    dob: dict
-    email: str
+    exc: str
+    format: str
     gender: str
-    id: dict
-    location: dict
-    login: dict
-    name: dict
+    inc: str
     nat: str
-    phone: str
-    picture: dict
-    registered: dict
+    page: int
+    result: int
+    seed: str
