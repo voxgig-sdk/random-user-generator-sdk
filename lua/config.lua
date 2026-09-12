@@ -40,6 +40,7 @@ local function make_config()
             ["type"] = "`$OBJECT`",
           },
           {
+            ["format"] = "email",
             ["name"] = "email",
             ["type"] = "`$STRING`",
           },
@@ -84,6 +85,10 @@ local function make_config()
             ["name"] = "registered",
             ["type"] = "`$OBJECT`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "get_random_user",
         ["op"] = {
@@ -153,7 +158,7 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/",
-                ["parts"] = {},
+                ["segments"] = {},
                 ["select"] = {
                   ["exist"] = {
                     "exc",
@@ -170,6 +175,7 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {},
               },
             },
           },

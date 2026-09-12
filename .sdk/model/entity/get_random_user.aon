@@ -16,6 +16,7 @@ main: kit: entity: get_random_user: {
       type: "`$OBJECT`"
     }
     {
+      format: "email"
       name: "email"
       req: false
       type: "`$STRING`"

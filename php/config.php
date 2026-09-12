@@ -66,6 +66,7 @@ class RandomUserGeneratorConfig
               'type' => '`$OBJECT`',
             ],
             [
+              'format' => 'email',
               'name' => 'email',
               'type' => '`$STRING`',
             ],
@@ -110,6 +111,10 @@ class RandomUserGeneratorConfig
               'name' => 'registered',
               'type' => '`$OBJECT`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'get_random_user',
           'op' => [
@@ -179,7 +184,7 @@ class RandomUserGeneratorConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/',
-                  'parts' => [],
+                  'segments' => [],
                   'select' => [
                     'exist' => [
                       'exc',
@@ -196,6 +201,7 @@ class RandomUserGeneratorConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [],
                 ],
               ],
             ],

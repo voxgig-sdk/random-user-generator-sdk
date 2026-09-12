@@ -52,6 +52,7 @@ module RandomUserGeneratorConfig
               "type" => "`$OBJECT`",
             },
             {
+              "format" => "email",
               "name" => "email",
               "type" => "`$STRING`",
             },
@@ -97,6 +98,10 @@ module RandomUserGeneratorConfig
               "type" => "`$OBJECT`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "get_random_user",
           "op" => {
             "list" => {
@@ -165,7 +170,7 @@ module RandomUserGeneratorConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/",
-                  "parts" => [],
+                  "segments" => [],
                   "select" => {
                     "exist" => [
                       "exc",
@@ -182,6 +187,7 @@ module RandomUserGeneratorConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [],
                 },
               ],
             },
