@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { RandomUserGeneratorSDK } from '@voxgig-sdk/random-user-generator'
+import { RandomUserGeneratorSDK } from '@voxgig-sdk/random-user-generator-sdk'
 
 const client = new RandomUserGeneratorSDK()
 ```
@@ -425,7 +425,7 @@ random-user-generator/
 Import the SDK from the package root:
 
 ```ts
-import { RandomUserGeneratorSDK } from '@voxgig-sdk/random-user-generator'
+import { RandomUserGeneratorSDK } from '@voxgig-sdk/random-user-generator-sdk'
 ```
 
 ### Entity state

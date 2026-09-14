@@ -105,7 +105,7 @@ local results, err = client:GetRandomUser():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/random-user-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/random-user-generator-sdk/releases) |
+| TypeScript | `@voxgig-sdk/random-user-generator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/random-user-generator-sdk/releases) |
 | Python | `voxgig-sdk-random-user-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/random-user-generator-sdk/releases) |
 | PHP | `voxgig-sdk/random-user-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/random-user-generator-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/random-user-generator-sdk/go` | `go get github.com/voxgig-sdk/random-user-generator-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:GetRandomUser():list()
 ### TypeScript
 
 ```ts
-import { RandomUserGeneratorSDK } from '@voxgig-sdk/random-user-generator'
+import { RandomUserGeneratorSDK } from '@voxgig-sdk/random-user-generator-sdk'
 
 const client = new RandomUserGeneratorSDK()
 
