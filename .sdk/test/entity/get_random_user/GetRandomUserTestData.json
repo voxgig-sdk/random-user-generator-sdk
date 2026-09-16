@@ -61,5 +61,398 @@
         "registered": {}
       }
     }
+  },
+  "requests": {
+    "GET /": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getRandomUsers",
+        "parameters": [
+          {
+            "description": "Number of users to generate",
+            "in": "query",
+            "name": "results",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Format of the response data",
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "schema": {
+              "default": "json",
+              "enum": [
+                "json",
+                "xml",
+                "csv",
+                "yaml"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Gender of the generated users",
+            "in": "query",
+            "name": "gender",
+            "required": false,
+            "schema": {
+              "enum": [
+                "male",
+                "female"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Nationality of the generated users (comma-separated list)",
+            "example": "US,GB,FR",
+            "in": "query",
+            "name": "nat",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Seed value for generating consistent results",
+            "in": "query",
+            "name": "seed",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Page number for pagination",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Fields to include in the results (comma-separated)",
+            "example": "gender,name,email",
+            "in": "query",
+            "name": "inc",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Fields to exclude from the results (comma-separated)",
+            "example": "login,registered",
+            "in": "query",
+            "name": "exc",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "info": {
+                    "page": 1,
+                    "results": 1,
+                    "seed": "56d27f4a53bd5441",
+                    "version": "1.4"
+                  },
+                  "results": [
+                    {
+                      "cell": "(489) 330-2385",
+                      "dob": {
+                        "age": 30,
+                        "date": "1992-03-08T15:13:16.688Z"
+                      },
+                      "email": "jennie.nichols@example.com",
+                      "gender": "female",
+                      "id": {
+                        "name": "SSN",
+                        "value": "405-88-3636"
+                      },
+                      "location": {
+                        "city": "Billings",
+                        "coordinates": {
+                          "latitude": "-69.8246",
+                          "longitude": "134.8719"
+                        },
+                        "country": "United States",
+                        "postcode": "63104",
+                        "state": "Michigan",
+                        "street": {
+                          "name": "Valwood Pkwy",
+                          "number": 8929
+                        },
+                        "timezone": {
+                          "description": "Adelaide, Darwin",
+                          "offset": "+9:30"
+                        }
+                      },
+                      "login": {
+                        "md5": "ab54ac4c0be9480ae8fa5e9e2a5196a3",
+                        "password": "addison",
+                        "salt": "sld1yGtd",
+                        "sha1": "edcf2ce613cbdea349133c52dc2f3b83168dc51b",
+                        "sha256": "48df5229235ada28389b91e60a935e4f9b73eb4bdb855ef9258a1751f10bdc5d",
+                        "username": "yellowpeacock117",
+                        "uuid": "7a0eed16-9430-4d68-901f-c0d4c1c3bf00"
+                      },
+                      "name": {
+                        "first": "Jennie",
+                        "last": "Nichols",
+                        "title": "Miss"
+                      },
+                      "nat": "US",
+                      "phone": "(272) 790-0888",
+                      "picture": {
+                        "large": "https://randomuser.me/api/portraits/men/75.jpg",
+                        "medium": "https://randomuser.me/api/portraits/med/men/75.jpg",
+                        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/75.jpg"
+                      },
+                      "registered": {
+                        "age": 14,
+                        "date": "2007-07-09T05:51:59.390Z"
+                      }
+                    }
+                  ]
+                },
+                "schema": {
+                  "properties": {
+                    "info": {
+                      "properties": {
+                        "page": {
+                          "type": "integer"
+                        },
+                        "results": {
+                          "type": "integer"
+                        },
+                        "seed": {
+                          "type": "string"
+                        },
+                        "version": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "results": {
+                      "items": {
+                        "properties": {
+                          "cell": {
+                            "type": "string"
+                          },
+                          "dob": {
+                            "properties": {
+                              "age": {
+                                "type": "integer"
+                              },
+                              "date": {
+                                "format": "date-time",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "email": {
+                            "format": "email",
+                            "type": "string"
+                          },
+                          "gender": {
+                            "enum": [
+                              "male",
+                              "female"
+                            ],
+                            "type": "string"
+                          },
+                          "id": {
+                            "properties": {
+                              "name": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "nullable": true,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "location": {
+                            "properties": {
+                              "city": {
+                                "type": "string"
+                              },
+                              "coordinates": {
+                                "properties": {
+                                  "latitude": {
+                                    "type": "string"
+                                  },
+                                  "longitude": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "country": {
+                                "type": "string"
+                              },
+                              "postcode": {
+                                "oneOf": [
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "integer"
+                                  }
+                                ]
+                              },
+                              "state": {
+                                "type": "string"
+                              },
+                              "street": {
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "number": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "timezone": {
+                                "properties": {
+                                  "description": {
+                                    "type": "string"
+                                  },
+                                  "offset": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "login": {
+                            "properties": {
+                              "md5": {
+                                "type": "string"
+                              },
+                              "password": {
+                                "type": "string"
+                              },
+                              "salt": {
+                                "type": "string"
+                              },
+                              "sha1": {
+                                "type": "string"
+                              },
+                              "sha256": {
+                                "type": "string"
+                              },
+                              "username": {
+                                "type": "string"
+                              },
+                              "uuid": {
+                                "format": "uuid",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "name": {
+                            "properties": {
+                              "first": {
+                                "type": "string"
+                              },
+                              "last": {
+                                "type": "string"
+                              },
+                              "title": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "nat": {
+                            "type": "string"
+                          },
+                          "phone": {
+                            "type": "string"
+                          },
+                          "picture": {
+                            "properties": {
+                              "large": {
+                                "format": "uri",
+                                "type": "string"
+                              },
+                              "medium": {
+                                "format": "uri",
+                                "type": "string"
+                              },
+                              "thumbnail": {
+                                "format": "uri",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "registered": {
+                            "properties": {
+                              "age": {
+                                "type": "integer"
+                              },
+                              "date": {
+                                "format": "date-time",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/yaml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful response with random user data"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

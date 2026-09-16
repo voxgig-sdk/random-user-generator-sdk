@@ -4,7 +4,10 @@ declare(strict_types=1);
 // RandomUserGenerator SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class RandomUserGeneratorFeatures
@@ -14,8 +17,14 @@ class RandomUserGeneratorFeatures
         switch ($name) {
             case "base":
                 return new RandomUserGeneratorBaseFeature();
+            case "ratelimit":
+                return new RandomUserGeneratorRatelimitFeature();
+            case "retry":
+                return new RandomUserGeneratorRetryFeature();
             case "test":
                 return new RandomUserGeneratorTestFeature();
+            case "timeout":
+                return new RandomUserGeneratorTimeoutFeature();
             default:
                 return new RandomUserGeneratorBaseFeature();
         }
@@ -31,7 +40,10 @@ class RandomUserGeneratorFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;
