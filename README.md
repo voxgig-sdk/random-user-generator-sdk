@@ -105,12 +105,12 @@ local results, err = client:GetRandomUser():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/random-user-generator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/random-user-generator-sdk/releases) |
-| Python | `voxgig-sdk-random-user-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/random-user-generator-sdk/releases) |
-| PHP | `voxgig-sdk/random-user-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/random-user-generator-sdk/releases) |
+| TypeScript | `@voxgig-sdk/random-user-generator-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/random-user-generator-sdk/tags) |
+| Python | `voxgig-sdk-random-user-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/random-user-generator-sdk/tags) |
+| PHP | `voxgig-sdk/random-user-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/random-user-generator-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/random-user-generator-sdk/go` | `go get github.com/voxgig-sdk/random-user-generator-sdk/go@latest` |
-| Ruby | `voxgig-sdk-random-user-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/random-user-generator-sdk/releases) |
-| Lua | `voxgig-sdk-random-user-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/random-user-generator-sdk/releases) |
+| Ruby | `voxgig-sdk-random-user-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/random-user-generator-sdk/tags) |
+| Lua | `voxgig-sdk-random-user-generator` | publish pending — [install from git tag](https://github.com/voxgig-sdk/random-user-generator-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/random-user-generator-sdk/go-cli` | `go install github.com/voxgig-sdk/random-user-generator-sdk/go-cli/cmd/random-user-generator@latest` |
 | Go MCP server | `github.com/voxgig-sdk/random-user-generator-sdk/go-mcp` | `go get github.com/voxgig-sdk/random-user-generator-sdk/go-mcp@latest` |
 
