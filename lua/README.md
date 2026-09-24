@@ -43,7 +43,7 @@ local getrandomusers, err = client:GetRandomUser():list()
 if err then error(err) end
 
 for _, item in ipairs(getrandomusers) do
-  print(item["id"], item["cell"])
+  print(item["id"])
 end
 ```
 

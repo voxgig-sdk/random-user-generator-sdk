@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -114,56 +107,63 @@ class Config {
             "fields": [
                 {
                     "name": "cell",
+                    "title": "Cell",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "dob",
+                    "title": "Dob",
                     "type": "`$OBJECT`"
                 },
                 {
-                    "format": "email",
                     "name": "email",
-                    "type": "`$STRING`"
+                    "title": "Email",
+                    "type": "`$STRING`",
+                    "format": "email"
                 },
                 {
                     "name": "gender",
+                    "title": "Gender",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "id",
+                    "title": "Id",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "location",
-                    "type": "`$OBJECT`",
-                    "union": {
-                        "branches": 2,
-                        "count": 1,
-                        "depth": 2
-                    }
+                    "title": "Location",
+                    "type": "`$OBJECT`"
                 },
                 {
                     "name": "login",
+                    "title": "Login",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "name",
+                    "title": "Name",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "nat",
+                    "title": "Nat",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "phone",
+                    "title": "Phone",
                     "type": "`$STRING`"
                 },
                 {
                     "name": "picture",
+                    "title": "Picture",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "registered",
+                    "title": "Registered",
                     "type": "`$OBJECT`"
                 }
             ],
@@ -178,68 +178,74 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": "login,registered",
-                                        "kind": "query",
-                                        "name": "exc",
-                                        "orig": "exc",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "json",
-                                        "kind": "query",
-                                        "name": "format",
-                                        "orig": "format",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "gender",
-                                        "orig": "gender",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "gender,name,email",
-                                        "kind": "query",
-                                        "name": "inc",
-                                        "orig": "inc",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "US,GB,FR",
-                                        "kind": "query",
-                                        "name": "nat",
-                                        "orig": "nat",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "page",
-                                        "orig": "page",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "result",
-                                        "orig": "result",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "seed",
-                                        "orig": "seed",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/",
                             "segments": [],
+                            "parts": [],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "exc",
+                                        "orig": "exc",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "login,registered"
+                                    },
+                                    {
+                                        "name": "format",
+                                        "orig": "format",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "json"
+                                    },
+                                    {
+                                        "name": "gender",
+                                        "orig": "gender",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "inc",
+                                        "orig": "inc",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "gender,name,email"
+                                    },
+                                    {
+                                        "name": "nat",
+                                        "orig": "nat",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "US,GB,FR"
+                                    },
+                                    {
+                                        "name": "page",
+                                        "orig": "page",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    },
+                                    {
+                                        "name": "result",
+                                        "orig": "result",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    },
+                                    {
+                                        "name": "seed",
+                                        "orig": "seed",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "exc",
@@ -251,12 +257,7 @@ class Config {
                                     "result",
                                     "seed"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": []
+                            }
                         }
                     ]
                 }

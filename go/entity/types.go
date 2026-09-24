@@ -1,7 +1,7 @@
 // Typed models for the RandomUserGenerator SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,18 +14,6 @@ import (
 
 // GetRandomUser is the typed data model for the get_random_user entity.
 type GetRandomUser struct {
-	Cell *string `json:"cell,omitempty"`
-	Dob *map[string]any `json:"dob,omitempty"`
-	Email *string `json:"email,omitempty"`
-	Gender *string `json:"gender,omitempty"`
-	Id *map[string]any `json:"id,omitempty"`
-	Location *map[string]any `json:"location,omitempty"`
-	Login *map[string]any `json:"login,omitempty"`
-	Name *map[string]any `json:"name,omitempty"`
-	Nat *string `json:"nat,omitempty"`
-	Phone *string `json:"phone,omitempty"`
-	Picture *map[string]any `json:"picture,omitempty"`
-	Registered *map[string]any `json:"registered,omitempty"`
 }
 
 // GetRandomUserListMatch is the typed request payload for GetRandomUser.ListTyped.

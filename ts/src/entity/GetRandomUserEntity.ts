@@ -19,7 +19,6 @@ import type {
   GetRandomUserListMatch,
 } from '../RandomUserGeneratorTypes'
 
-// TODO: needs Entity superclass
 class GetRandomUserEntity extends RandomUserGeneratorEntityBase<GetRandomUser> {
 
   constructor(client: RandomUserGeneratorSDK, entopts: any) {

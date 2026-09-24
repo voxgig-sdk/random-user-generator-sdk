@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetRandomUserEntity = void 0;
 const RandomUserGeneratorEntityBase_1 = require("../RandomUserGeneratorEntityBase");
-// TODO: needs Entity superclass
 class GetRandomUserEntity extends RandomUserGeneratorEntityBase_1.RandomUserGeneratorEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

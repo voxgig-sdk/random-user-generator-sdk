@@ -1,0 +1,195 @@
+# Entity: get_random_user
+
+main: kit: entity: get_random_user: {
+
+  alias: field: {}
+
+  fields: {
+    cell: {
+      h: "Cell"
+      n: "cell"
+      r: false
+      t: "`$STRING`"
+    }
+    dob: {
+      h: "Dob"
+      n: "dob"
+      r: false
+      t: "`$OBJECT`"
+    }
+    email: {
+      fo: "email"
+      h: "Email"
+      n: "email"
+      r: false
+      t: "`$STRING`"
+    }
+    gender: {
+      h: "Gender"
+      n: "gender"
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$OBJECT`"
+    }
+    location: {
+      h: "Location"
+      n: "location"
+      r: false
+      t: "`$OBJECT`"
+      union: {
+        branches: 2
+        count: 1
+        depth: 2
+      }
+    }
+    login: {
+      h: "Login"
+      n: "login"
+      r: false
+      t: "`$OBJECT`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      t: "`$OBJECT`"
+    }
+    nat: {
+      h: "Nat"
+      n: "nat"
+      r: false
+      t: "`$STRING`"
+    }
+    phone: {
+      h: "Phone"
+      n: "phone"
+      r: false
+      t: "`$STRING`"
+    }
+    picture: {
+      h: "Picture"
+      n: "picture"
+      r: false
+      t: "`$OBJECT`"
+    }
+    registered: {
+      h: "Registered"
+      n: "registered"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "get_random_user"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "login,registered"
+                k: "query"
+                n: "exc"
+                or: "exc"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "json"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "gender"
+                or: "gender"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "gender,name,email"
+                k: "query"
+                n: "inc"
+                or: "inc"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "US,GB,FR"
+                k: "query"
+                n: "nat"
+                or: "nat"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "result"
+                or: "result"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "seed"
+                or: "seed"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/"
+          q: {
+            exist: [
+              "exc"
+              "format"
+              "gender"
+              "inc"
+              "nat"
+              "page"
+              "result"
+              "seed"
+            ]
+          }
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
