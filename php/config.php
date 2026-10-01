@@ -192,7 +192,7 @@ class RandomUserGeneratorConfig
                   'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.results`',
                   ],
                   'args' => [
                     'query' => [
@@ -239,7 +239,7 @@ class RandomUserGeneratorConfig
                       ],
                       [
                         'name' => 'result',
-                        'orig' => 'result',
+                        'orig' => 'results',
                         'type' => '`$INTEGER`',
                         'kind' => 'query',
                         'example' => 1,

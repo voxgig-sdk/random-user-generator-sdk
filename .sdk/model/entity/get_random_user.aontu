@@ -154,7 +154,7 @@ main: kit: entity: get_random_user: {
                 ex: 1
                 k: "query"
                 n: "result"
-                or: "result"
+                or: "results"
                 r: false
                 t: "`$INTEGER`"
               }
@@ -183,7 +183,7 @@ main: kit: entity: get_random_user: {
           }
           t: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.results`"
           }
         }
       ]

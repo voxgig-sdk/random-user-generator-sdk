@@ -195,7 +195,7 @@ def make_config():
                 "rename": {},
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body`",
+                  "res": "`body.results`",
                 },
                 "args": {
                   "query": [
@@ -242,7 +242,7 @@ def make_config():
                     },
                     {
                       "name": "result",
-                      "orig": "result",
+                      "orig": "results",
                       "type": "`$INTEGER`",
                       "kind": "query",
                       "example": 1,

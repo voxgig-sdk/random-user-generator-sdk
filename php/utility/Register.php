@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 RandomUserGeneratorUtility::setRegistrar(function (RandomUserGeneratorUtility $u): void {
     $u->clean = [RandomUserGeneratorClean::class, 'call'];
+    $u->clean_add = [RandomUserGeneratorClean::class, 'add'];
+    $u->clean_explain = [RandomUserGeneratorDone::class, 'clean_explain'];
     $u->done = [RandomUserGeneratorDone::class, 'call'];
     $u->make_error = [RandomUserGeneratorMakeError::class, 'call'];
     $u->feature_add = [RandomUserGeneratorFeatureAdd::class, 'call'];

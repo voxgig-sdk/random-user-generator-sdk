@@ -11,6 +11,7 @@ guide: {
   entity: get_random_user: {
     path: "/": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.results`")|top
     }
   }
 

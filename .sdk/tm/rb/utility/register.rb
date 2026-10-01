@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 RandomUserGeneratorUtility.registrar = ->(u) {
   u.clean = RandomUserGeneratorUtilities::Clean
+  u.clean_add = RandomUserGeneratorUtilities::CleanAdd
+  u.clean_explain = RandomUserGeneratorUtilities::CleanExplain
   u.done = RandomUserGeneratorUtilities::Done
   u.make_error = RandomUserGeneratorUtilities::MakeError
   u.feature_add = RandomUserGeneratorUtilities::FeatureAdd

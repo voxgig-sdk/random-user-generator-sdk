@@ -211,7 +211,7 @@ class Config {
               "rename": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.results`"
               },
               "args": {
                 "query": [
@@ -258,7 +258,7 @@ class Config {
                   },
                   {
                     "name": "result",
-                    "orig": "result",
+                    "orig": "results",
                     "type": "`$INTEGER`",
                     "kind": "query",
                     "example": 1

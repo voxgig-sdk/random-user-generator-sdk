@@ -1,6 +1,7 @@
 package core
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 
@@ -82,6 +83,22 @@ func NewRandomUserGeneratorSDK(options map[string]any) *RandomUserGeneratorSDK {
 	sdk.utility.FeatureHook(sdk.rootctx, "PostConstruct")
 
 	return sdk
+}
+
+// The client holds the credential in its options, so a print or a JSON dump
+// carries the name alone. Value receivers: a dereferenced client prints the
+// same way.
+func (sdk RandomUserGeneratorSDK) String() string {
+	return "RandomUserGenerator " + vs.Jsonify(map[string]any{"name": "RandomUserGenerator"},
+		map[string]any{"indent": 0})
+}
+
+func (sdk RandomUserGeneratorSDK) GoString() string {
+	return sdk.String()
+}
+
+func (sdk RandomUserGeneratorSDK) MarshalJSON() ([]byte, error) {
+	return json.Marshal(map[string]any{"name": "RandomUserGenerator"})
 }
 
 func (sdk *RandomUserGeneratorSDK) OptionsMap() map[string]any {
@@ -210,7 +227,7 @@ func (sdk *RandomUserGeneratorSDK) rawRequest(fetchargs map[string]any) (map[str
 
 	fetchdef, err := sdk.Prepare(fetchargs)
 	if err != nil {
-		return map[string]any{"ok": false, "err": err}, nil
+		return map[string]any{"ok": false, "err": sdk.cleanErr(sdk.rootctx, err)}, nil
 	}
 
 	if fetchargs == nil {
@@ -236,7 +253,7 @@ func (sdk *RandomUserGeneratorSDK) rawRequest(fetchargs map[string]any) (map[str
 	fetched, fetchErr := utility.Fetcher(ctx, url, fetchdef)
 
 	if fetchErr != nil {
-		return map[string]any{"ok": false, "err": fetchErr}, nil
+		return map[string]any{"ok": false, "err": sdk.cleanErr(ctx, fetchErr)}, nil
 	}
 
 	if fetched == nil {
@@ -278,6 +295,14 @@ func (sdk *RandomUserGeneratorSDK) rawRequest(fetchargs map[string]any) (map[str
 	}
 
 	return map[string]any{"ok": false, "err": ctx.MakeError("direct_invalid", "invalid response type")}, nil
+}
+
+// A raw request returns its error rather than passing it through MakeError.
+func (sdk *RandomUserGeneratorSDK) cleanErr(ctx *Context, err error) error {
+	if cleaned, ok := sdk.utility.Clean(ctx, err).(error); ok {
+		return cleaned
+	}
+	return err
 }
 
 func (sdk *RandomUserGeneratorSDK) Graphql(
