@@ -87,6 +87,7 @@ class Config {
             },
             "optspec": {
                 "clearTimer": "`$FUNCTION`",
+                "now": "`$FUNCTION`",
                 "setTimer": "`$FUNCTION`"
             },
             "strict": false,
@@ -208,7 +209,8 @@ class Config {
                                         "name": "gender",
                                         "orig": "gender",
                                         "type": "`$STRING`",
-                                        "kind": "query"
+                                        "kind": "query",
+                                        "field": true
                                     },
                                     {
                                         "name": "inc",
@@ -222,7 +224,8 @@ class Config {
                                         "orig": "nat",
                                         "type": "`$STRING`",
                                         "kind": "query",
-                                        "example": "US,GB,FR"
+                                        "example": "US,GB,FR",
+                                        "field": true
                                     },
                                     {
                                         "name": "page",
@@ -246,17 +249,25 @@ class Config {
                                     }
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "exc",
-                                    "format",
-                                    "gender",
-                                    "inc",
-                                    "nat",
-                                    "page",
-                                    "result",
-                                    "seed"
-                                ]
+                            "select": {},
+                            "response": {
+                                "alternatives": [
+                                    {
+                                        "kind": "raw",
+                                        "media": "application/xml"
+                                    },
+                                    {
+                                        "binary": true,
+                                        "kind": "raw",
+                                        "media": "application/yaml"
+                                    },
+                                    {
+                                        "kind": "raw",
+                                        "media": "text/csv"
+                                    }
+                                ],
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]

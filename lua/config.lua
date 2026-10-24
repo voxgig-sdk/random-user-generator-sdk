@@ -67,6 +67,7 @@ local function make_config()
         },
         ["optspec"] = {
           ["clearTimer"] = "`$FUNCTION`",
+          ["now"] = "`$FUNCTION`",
           ["setTimer"] = "`$FUNCTION`",
         },
         ["strict"] = false,
@@ -189,6 +190,7 @@ local function make_config()
                       ["orig"] = "gender",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "inc",
@@ -203,6 +205,7 @@ local function make_config()
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                       ["example"] = "US,GB,FR",
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "page",
@@ -226,17 +229,25 @@ local function make_config()
                     },
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "exc",
-                    "format",
-                    "gender",
-                    "inc",
-                    "nat",
-                    "page",
-                    "result",
-                    "seed",
+                ["select"] = {},
+                ["response"] = {
+                  ["alternatives"] = {
+                    {
+                      ["kind"] = "raw",
+                      ["media"] = "application/xml",
+                    },
+                    {
+                      ["binary"] = true,
+                      ["kind"] = "raw",
+                      ["media"] = "application/yaml",
+                    },
+                    {
+                      ["kind"] = "raw",
+                      ["media"] = "text/csv",
+                    },
                   },
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },

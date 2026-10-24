@@ -57,6 +57,7 @@ declare class Config {
             };
             optspec: {
                 clearTimer: string;
+                now: string;
                 setTimer: string;
             };
             strict: boolean;
@@ -112,22 +113,50 @@ declare class Config {
                                 type: string;
                                 kind: string;
                                 example: string;
+                                field?: undefined;
                             } | {
                                 name: string;
                                 orig: string;
                                 type: string;
                                 kind: string;
+                                field: boolean;
                                 example?: undefined;
                             } | {
                                 name: string;
                                 orig: string;
                                 type: string;
                                 kind: string;
+                                example: string;
+                                field: boolean;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
                                 example: number;
+                                field?: undefined;
+                            } | {
+                                name: string;
+                                orig: string;
+                                type: string;
+                                kind: string;
+                                example?: undefined;
+                                field?: undefined;
                             })[];
                         };
-                        select: {
-                            exist: string[];
+                        select: {};
+                        response: {
+                            alternatives: ({
+                                kind: string;
+                                media: string;
+                                binary?: undefined;
+                            } | {
+                                binary: boolean;
+                                kind: string;
+                                media: string;
+                            })[];
+                            kind: string;
+                            media: string;
                         };
                     }[];
                 };

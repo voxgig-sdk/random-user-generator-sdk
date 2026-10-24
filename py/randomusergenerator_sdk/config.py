@@ -96,6 +96,7 @@ def make_config():
         },
         "optspec": {
           "clearTimer": "`$FUNCTION`",
+          "now": "`$FUNCTION`",
           "setTimer": "`$FUNCTION`",
         },
         "strict": False,
@@ -218,6 +219,7 @@ def make_config():
                       "orig": "gender",
                       "type": "`$STRING`",
                       "kind": "query",
+                      "field": True,
                     },
                     {
                       "name": "inc",
@@ -232,6 +234,7 @@ def make_config():
                       "type": "`$STRING`",
                       "kind": "query",
                       "example": "US,GB,FR",
+                      "field": True,
                     },
                     {
                       "name": "page",
@@ -255,17 +258,25 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "exc",
-                    "format",
-                    "gender",
-                    "inc",
-                    "nat",
-                    "page",
-                    "result",
-                    "seed",
+                "select": {},
+                "response": {
+                  "alternatives": [
+                    {
+                      "kind": "raw",
+                      "media": "application/xml",
+                    },
+                    {
+                      "binary": True,
+                      "kind": "raw",
+                      "media": "application/yaml",
+                    },
+                    {
+                      "kind": "raw",
+                      "media": "text/csv",
+                    },
                   ],
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],

@@ -79,6 +79,7 @@ module RandomUserGeneratorConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -201,6 +202,7 @@ module RandomUserGeneratorConfig
                         "orig" => "gender",
                         "type" => "`$STRING`",
                         "kind" => "query",
+                        "field" => true,
                       },
                       {
                         "name" => "inc",
@@ -215,6 +217,7 @@ module RandomUserGeneratorConfig
                         "type" => "`$STRING`",
                         "kind" => "query",
                         "example" => "US,GB,FR",
+                        "field" => true,
                       },
                       {
                         "name" => "page",
@@ -238,17 +241,25 @@ module RandomUserGeneratorConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "exc",
-                      "format",
-                      "gender",
-                      "inc",
-                      "nat",
-                      "page",
-                      "result",
-                      "seed",
+                  "select" => {},
+                  "response" => {
+                    "alternatives" => [
+                      {
+                        "kind" => "raw",
+                        "media" => "application/xml",
+                      },
+                      {
+                        "binary" => true,
+                        "kind" => "raw",
+                        "media" => "application/yaml",
+                      },
+                      {
+                        "kind" => "raw",
+                        "media" => "text/csv",
+                      },
                     ],
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],

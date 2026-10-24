@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.GetRandomUser();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('get_random_user hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.RandomUserGeneratorSDK.test(offline).GetRandomUser().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.RandomUserGeneratorSDK.test(offline).GetRandomUser()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.RandomUserGeneratorSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.GetRandomUser().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.RandomUserGeneratorSDK.test().GetRandomUser().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.RandomUserGeneratorSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.GetRandomUser().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.GetRandomUser().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.RandomUserGeneratorSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.GetRandomUser().list({ "exc": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.RANDOM_USER_GENERATOR_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "cell": { "a": true, "h": "Cell", "n": "cell", "r": false, "t": "`$STRING`", "key$": "cell", "index$": 0 }, "dob": { "a": true, "h": "Dob", "n": "dob", "r": false, "t": "`$OBJECT`", "key$": "dob", "index$": 1 }, "email": { "a": true, "fo": "email", "h": "Email", "n": "email", "r": false, "t": "`$STRING`", "key$": "email", "index$": 2 }, "gender": { "a": true, "h": "Gender", "n": "gender", "r": false, "t": "`$STRING`", "key$": "gender", "index$": 3 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$OBJECT`", "key$": "id", "index$": 4 }, "location": { "a": true, "h": "Location", "n": "location", "r": false, "t": "`$OBJECT`", "union": { "branches": 2, "count": 1, "depth": 2 }, "key$": "location", "index$": 5 }, "login": { "a": true, "h": "Login", "n": "login", "r": false, "t": "`$OBJECT`", "key$": "login", "index$": 6 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "t": "`$OBJECT`", "key$": "name", "index$": 7 }, "nat": { "a": true, "h": "Nat", "n": "nat", "r": false, "t": "`$STRING`", "key$": "nat", "index$": 8 }, "phone": { "a": true, "h": "Phone", "n": "phone", "r": false, "t": "`$STRING`", "key$": "phone", "index$": 9 }, "picture": { "a": true, "h": "Picture", "n": "picture", "r": false, "t": "`$OBJECT`", "key$": "picture", "index$": 10 }, "registered": { "a": true, "h": "Registered", "n": "registered", "r": false, "t": "`$OBJECT`", "key$": "registered", "index$": 11 } }, "id": { "field": "id", "name": "id" }, "name": "get_random_user", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "login,registered", "k": "query", "n": "exc", "or": "exc", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "json", "k": "query", "n": "format", "or": "format", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "k": "query", "n": "gender", "or": "gender", "r": false, "t": "`$STRING`", "index$": 2 }, { "a": true, "ex": "gender,name,email", "k": "query", "n": "inc", "or": "inc", "r": false, "t": "`$STRING`", "index$": 3 }, { "a": true, "ex": "US,GB,FR", "k": "query", "n": "nat", "or": "nat", "r": false, "t": "`$STRING`", "index$": 4 }, { "a": true, "ex": 1, "k": "query", "n": "page", "or": "page", "r": false, "t": "`$INTEGER`", "index$": 5 }, { "a": true, "ex": 1, "k": "query", "n": "result", "or": "results", "r": false, "t": "`$INTEGER`", "index$": 6 }, { "a": true, "k": "query", "n": "seed", "or": "seed", "r": false, "t": "`$STRING`", "index$": 7 }] }, "k": "http", "m": "GET", "o": "/", "q": { "exist": ["exc", "format", "gender", "inc", "nat", "page", "result", "seed"] }, "r": {}, "s": [], "t": { "req": "`reqdata`", "res": "`body.results`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "get_random_user", "name__orig": "get_random_user", "Name": "GetRandomUser", "name_": "get_random_user", "name-": "get-random-user", "NAME": "GET_RANDOM_USER", "index$": 0 }, { "active": true, "entity": "get_random_user", "key$": "BasicGetRandomUserFlow", "kind": "basic", "name": "BasicGetRandomUserFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "get_random_user_ref01" } }], "index$": 0 }] }, 'GetRandomUser', { "GET /": { "protocol": "http", "parameters": [{ "name": "results", "in": "query", "description": "Number of users to generate", "required": false, "schema": { "type": "integer", "default": 1, "minimum": 1 }, "index$": 0 }, { "name": "format", "in": "query", "description": "Format of the response data", "required": false, "schema": { "type": "string", "enum": ["json", "xml", "csv", "yaml"], "default": "json" }, "index$": 1 }, { "name": "gender", "in": "query", "description": "Gender of the generated users", "required": false, "schema": { "type": "string", "enum": ["male", "female"] }, "index$": 2 }, { "name": "nat", "in": "query", "description": "Nationality of the generated users (comma-separated list)", "required": false, "schema": { "type": "string" }, "example": "US,GB,FR", "index$": 3 }, { "name": "seed", "in": "query", "description": "Seed value for generating consistent results", "required": false, "schema": { "type": "string" }, "index$": 4 }, { "name": "page", "in": "query", "description": "Page number for pagination", "required": false, "schema": { "type": "integer", "default": 1, "minimum": 1 }, "index$": 5 }, { "name": "inc", "in": "query", "description": "Fields to include in the results (comma-separated)", "required": false, "schema": { "type": "string" }, "example": "gender,name,email", "index$": 6 }, { "name": "exc", "in": "query", "description": "Fields to exclude from the results (comma-separated)", "required": false, "schema": { "type": "string" }, "example": "login,registered", "index$": 7 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "cell": { "a": true, "h": "Cell", "n": "cell", "r": false, "t": "`$STRING`", "key$": "cell", "index$": 0 }, "dob": { "a": true, "h": "Dob", "n": "dob", "r": false, "t": "`$OBJECT`", "key$": "dob", "index$": 1 }, "email": { "a": true, "fo": "email", "h": "Email", "n": "email", "r": false, "t": "`$STRING`", "key$": "email", "index$": 2 }, "gender": { "a": true, "h": "Gender", "n": "gender", "r": false, "t": "`$STRING`", "key$": "gender", "index$": 3 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "t": "`$OBJECT`", "key$": "id", "index$": 4 }, "location": { "a": true, "h": "Location", "n": "location", "r": false, "t": "`$OBJECT`", "union": { "branches": 2, "count": 1, "depth": 2 }, "key$": "location", "index$": 5 }, "login": { "a": true, "h": "Login", "n": "login", "r": false, "t": "`$OBJECT`", "key$": "login", "index$": 6 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "t": "`$OBJECT`", "key$": "name", "index$": 7 }, "nat": { "a": true, "h": "Nat", "n": "nat", "r": false, "t": "`$STRING`", "key$": "nat", "index$": 8 }, "phone": { "a": true, "h": "Phone", "n": "phone", "r": false, "t": "`$STRING`", "key$": "phone", "index$": 9 }, "picture": { "a": true, "h": "Picture", "n": "picture", "r": false, "t": "`$OBJECT`", "key$": "picture", "index$": 10 }, "registered": { "a": true, "h": "Registered", "n": "registered", "r": false, "t": "`$OBJECT`", "key$": "registered", "index$": 11 } }, "id": { "field": "id", "name": "id" }, "name": "get_random_user", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "ex": "login,registered", "k": "query", "n": "exc", "or": "exc", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "ex": "json", "k": "query", "n": "format", "or": "format", "r": false, "t": "`$STRING`", "index$": 1 }, { "a": true, "k": "query", "n": "gender", "or": "gender", "r": false, "t": "`$STRING`", "index$": 2 }, { "a": true, "ex": "gender,name,email", "k": "query", "n": "inc", "or": "inc", "r": false, "t": "`$STRING`", "index$": 3 }, { "a": true, "ex": "US,GB,FR", "k": "query", "n": "nat", "or": "nat", "r": false, "t": "`$STRING`", "index$": 4 }, { "a": true, "ex": 1, "k": "query", "n": "page", "or": "page", "r": false, "t": "`$INTEGER`", "index$": 5 }, { "a": true, "ex": 1, "k": "query", "n": "result", "or": "results", "r": false, "t": "`$INTEGER`", "index$": 6 }, { "a": true, "k": "query", "n": "seed", "or": "seed", "r": false, "t": "`$STRING`", "index$": 7 }] }, "k": "http", "m": "GET", "o": "/", "q": {}, "r": {}, "rs": { "alternatives": [{ "kind": "raw", "media": "application/xml" }, { "binary": true, "kind": "raw", "media": "application/yaml" }, { "kind": "raw", "media": "text/csv" }], "kind": "json", "media": "application/json" }, "s": [], "t": { "req": "`reqdata`", "res": "`body.results`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "get_random_user", "name__orig": "get_random_user", "Name": "GetRandomUser", "name_": "get_random_user", "name-": "get-random-user", "NAME": "GET_RANDOM_USER", "index$": 0 }, { "active": true, "entity": "get_random_user", "key$": "BasicGetRandomUserFlow", "kind": "basic", "name": "BasicGetRandomUserFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "get_random_user_ref01" } }], "index$": 0 }] }, 'GetRandomUser', { "GET /": { "protocol": "http", "parameters": [{ "name": "results", "in": "query", "description": "Number of users to generate", "required": false, "schema": { "type": "integer", "default": 1, "minimum": 1 }, "index$": 0 }, { "name": "format", "in": "query", "description": "Format of the response data", "required": false, "schema": { "type": "string", "enum": ["json", "xml", "csv", "yaml"], "default": "json" }, "index$": 1 }, { "name": "gender", "in": "query", "description": "Gender of the generated users", "required": false, "schema": { "type": "string", "enum": ["male", "female"] }, "index$": 2 }, { "name": "nat", "in": "query", "description": "Nationality of the generated users (comma-separated list)", "required": false, "schema": { "type": "string" }, "example": "US,GB,FR", "index$": 3 }, { "name": "seed", "in": "query", "description": "Seed value for generating consistent results", "required": false, "schema": { "type": "string" }, "index$": 4 }, { "name": "page", "in": "query", "description": "Page number for pagination", "required": false, "schema": { "type": "integer", "default": 1, "minimum": 1 }, "index$": 5 }, { "name": "inc", "in": "query", "description": "Fields to include in the results (comma-separated)", "required": false, "schema": { "type": "string" }, "example": "gender,name,email", "index$": 6 }, { "name": "exc", "in": "query", "description": "Fields to exclude from the results (comma-separated)", "required": false, "schema": { "type": "string" }, "example": "login,registered", "index$": 7 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +122,11 @@ const utility_1 = require("../../utility");
         const get_random_user_ref01_list = (await get_random_user_ref01_ent.list(get_random_user_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

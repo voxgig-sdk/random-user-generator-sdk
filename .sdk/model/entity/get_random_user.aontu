@@ -169,17 +169,24 @@ main: kit: entity: get_random_user: {
           }
           m: "GET"
           o: "/"
-          q: {
-            exist: [
-              "exc"
-              "format"
-              "gender"
-              "inc"
-              "nat"
-              "page"
-              "result"
-              "seed"
+          rs: {
+            alternatives: [
+              {
+                kind: "raw"
+                media: "application/xml"
+              }
+              {
+                binary: true
+                kind: "raw"
+                media: "application/yaml"
+              }
+              {
+                kind: "raw"
+                media: "text/csv"
+              }
             ]
+            kind: "json"
+            media: "application/json"
           }
           t: {
             req: "`reqdata`"

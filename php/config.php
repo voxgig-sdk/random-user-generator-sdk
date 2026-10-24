@@ -93,6 +93,7 @@ class RandomUserGeneratorConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -215,6 +216,7 @@ class RandomUserGeneratorConfig
                         'orig' => 'gender',
                         'type' => '`$STRING`',
                         'kind' => 'query',
+                        'field' => true,
                       ],
                       [
                         'name' => 'inc',
@@ -229,6 +231,7 @@ class RandomUserGeneratorConfig
                         'type' => '`$STRING`',
                         'kind' => 'query',
                         'example' => 'US,GB,FR',
+                        'field' => true,
                       ],
                       [
                         'name' => 'page',
@@ -252,17 +255,25 @@ class RandomUserGeneratorConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'exc',
-                      'format',
-                      'gender',
-                      'inc',
-                      'nat',
-                      'page',
-                      'result',
-                      'seed',
+                  'select' => [],
+                  'response' => [
+                    'alternatives' => [
+                      [
+                        'kind' => 'raw',
+                        'media' => 'application/xml',
+                      ],
+                      [
+                        'binary' => true,
+                        'kind' => 'raw',
+                        'media' => 'application/yaml',
+                      ],
+                      [
+                        'kind' => 'raw',
+                        'media' => 'text/csv',
+                      ],
                     ],
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

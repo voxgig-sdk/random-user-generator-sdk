@@ -17,15 +17,22 @@ const PLAN: any[] = [
     "args": [],
     "select": {
       "exc": "login,registered",
-      "format": "v1",
+      "format": "json",
       "gender": "v1",
       "inc": "gender,name,email",
       "nat": "US,GB,FR",
-      "page": "v1",
-      "result": "v1",
+      "page": 1,
+      "result": 1,
       "seed": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json",
+      "application/xml",
+      "text/csv",
+      "application/yaml"
+    ],
     "query": [
       "results",
       "format",
@@ -35,6 +42,40 @@ const PLAN: any[] = [
       "page",
       "inc",
       "exc"
+    ],
+    "queryArgs": [
+      {
+        "name": "exc",
+        "wire": "exc"
+      },
+      {
+        "name": "format",
+        "wire": "format"
+      },
+      {
+        "name": "gender",
+        "wire": "gender"
+      },
+      {
+        "name": "inc",
+        "wire": "inc"
+      },
+      {
+        "name": "nat",
+        "wire": "nat"
+      },
+      {
+        "name": "page",
+        "wire": "page"
+      },
+      {
+        "name": "result",
+        "wire": "results"
+      },
+      {
+        "name": "seed",
+        "wire": "seed"
+      }
     ],
     "auth": null,
     "status": 200,
